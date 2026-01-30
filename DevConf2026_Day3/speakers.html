@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DevConf 2026 - Speakers</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+  }
+
+  .site-header {
+    background: #1a73e8;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .logo span {
+    color: #22c55e;
+  }
+
+  .nav-bar a {
+    color: white;
+    text-decoration: none;
+    margin: 0 12px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    transition: background 0.3s;
+  }
+
+  .nav-bar a:hover {
+    background: #0f172a33;
+  }
+
+  .nav-bar a.active {
+    background: #22c55e;
+  }
+
+  main {
+    padding: 40px 20px;
+    max-width: 1000px;
+    margin: auto;
+  }
+
+  h1 {
+    text-align: center;
+    color: #0f172a;
+    margin-bottom: 40px;
+  }
+
+  .speakers-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  article {
+    background: #ffffffdd;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    width: 250px;
+    text-align: center;
+  }
+
+  article img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+  }
+
+  article h3 {
+    margin: 10px 0 5px;
+    color: #1a73e8;
+  }
+
+  article p {
+    margin: 5px 0;
+    color: #334155;
+    font-size: 0.95rem;
+  }
+
+  article ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+  }
+
+  article ul li {
+    background: #22c55e33;
+    margin: 5px 0;
+    padding: 5px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+  }
+
+  footer {
+    background: #1a73e8;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 50px;
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="logo">Dev<span>Conf</span> 2026</div>
+  <nav class="nav-bar">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="speakers.html" class="active">Speakers</a>
+    <a href="schedule.html">Schedule</a>
+    <a href="sponsors.html">Sponsors</a>
+    <a href="register.html">Register</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <h1>Keynote Speakers</h1>
+
+  <section class="speakers-container">
+    <article>
+      <img src="https://via.placeholder.com/150" alt="Dr. Ananya Rao">
+      <h3>Dr. Ananya Rao</h3>
+      <p>AI Researcher, Google</p>
+      <p>Leading AI researcher working on neural networks and ethics.</p>
+      <ul><li>Machine Learning</li><li>Deep Learning</li><li>AI Ethics</li></ul>
+    </article>
+
+    <article>
+      <img src="https://via.placeholder.com/150" alt="John Carter">
+      <h3>John Carter</h3>
+      <p>Cloud Architect, AWS</p>
+      <p>Designs scalable cloud infrastructures for enterprises.</p>
+      <ul><li>AWS</li><li>DevOps</li><li>Microservices</li></ul>
+    </article>
+
+    <article>
+      <img src="https://via.placeholder.com/150" alt="Meera Sharma">
+      <h3>Meera Sharma</h3>
+      <p>Security Analyst, Microsoft</p>
+      <p>Specializes in cybersecurity and digital privacy.</p>
+      <ul><li>Cybersecurity</li><li>Ethical Hacking</li><li>Network Security</li></ul>
+    </article>
+
+    <article>
+      <img src="https://via.placeholder.com/150" alt="David Lee">
+      <h3>David Lee</h3>
+      <p>Software Engineer, Meta</p>
+      <p>Works on large-scale distributed systems.</p>
+      <ul><li>System Design</li><li>Distributed Systems</li><li>Backend</li></ul>
+    </article>
+
+    <article>
+      <img src="https://via.placeholder.com/150" alt="Priya Singh">
+      <h3>Priya Singh</h3>
+      <p>Data Scientist, Netflix</p>
+      <p>Builds recommendation systems and analytics models.</p>
+      <ul><li>Data Science</li><li>Python</li><li>Big Data</li></ul>
+    </article>
+
+    <article>
+      <img src="https://via.placeholder.com/150" alt="Alex Kim">
+      <h3>Alex Kim</h3>
+      <p>Blockchain Developer</p>
+      <p>Develops decentralized applications and Web3 platforms.</p>
+      <ul><li>Blockchain</li><li>Smart Contracts</li><li>Web3</li></ul>
+    </article>
+  </section>
+</main>
+
+<footer>
+  &copy; 2026 DevConf. All Rights Reserved.
+</footer>
+
+</body>
+</html>

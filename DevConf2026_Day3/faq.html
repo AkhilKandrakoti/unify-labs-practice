@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ | DevConf 2026</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+    }
+
+    /* Navbar */
+    .site-header {
+      background: #1a73e8;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .logo span {
+      color: #22c55e;
+    }
+
+    .nav-bar a {
+      color: white;
+      text-decoration: none;
+      margin: 0 12px;
+      padding: 5px 10px;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    .nav-bar a:hover {
+      background: #0f172a33;
+    }
+
+    .nav-bar a.active {
+      background: #22c55e;
+    }
+
+    main {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: #0f172a;
+      margin-bottom: 40px;
+    }
+
+    /* FAQ Section */
+    dl {
+      background: #ffffffdd;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      margin-bottom: 40px;
+    }
+
+    dt {
+      font-weight: 600;
+      margin-top: 15px;
+      color: #1a73e8;
+      cursor: pointer;
+    }
+
+    dd {
+      margin-left: 20px;
+      margin-bottom: 10px;
+      color: #334155;
+    }
+
+    /* Form */
+    form {
+      background: #ffffffdd;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    form input, form textarea {
+      padding: 10px 15px;
+      border-radius: 10px;
+      border: 1px solid #cbd5e1;
+      font-size: 1rem;
+      width: 100%;
+      transition: 0.3s;
+    }
+
+    form input:focus, form textarea:focus {
+      border-color: #1a73e8;
+      box-shadow: 0 0 10px rgba(26,115,232,0.2);
+      outline: none;
+    }
+
+    form button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 50px;
+      background: #22c55e;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    form button:hover {
+      background: #16a34a;
+      transform: scale(1.03);
+    }
+
+    footer {
+      background: #1a73e8;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="logo">Dev<span>Conf</span> 2026</div>
+  <nav class="nav-bar">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="speakers.html">Speakers</a>
+    <a href="schedule.html">Schedule</a>
+    <a href="sponsors.html">Sponsors</a>
+    <a href="register.html">Register</a>
+    <a href="faq.html" class="active">FAQ</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <h1>Frequently Asked Questions</h1>
+
+  <section>
+    <dl>
+      <dt>How do I register?</dt>
+      <dd>Use the <a href="register.html">registration page</a> to sign up for DevConf 2026.</dd>
+
+      <dt>Is the conference free?</dt>
+      <dd>Student passes are free. Professional passes may have a fee.</dd>
+
+      <dt>Can I attend virtually?</dt>
+      <dd>Yes, there are options for both in-person and virtual attendance.</dd>
+
+      <dt>Are workshops included?</dt>
+      <dd>Workshops are included based on your registration preferences.</dd>
+    </dl>
+  </section>
+
+  <section>
+    <h2>Contact Us</h2>
+    <form>
+      <input type="text" placeholder="Name" required>
+      <input type="email" placeholder="Email" required>
+      <textarea placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+</main>
+
+<footer>
+  &copy; 2026 DevConf. All Rights Reserved.
+</footer>
+
+</body>
+</html>
