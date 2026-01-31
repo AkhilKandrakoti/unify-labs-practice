@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register | DevConf 2026</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Sidebar Navigation -->
+  <nav class="sidebar">
+    <div class="logo">Dev<span>Conf</span> 2026</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="speakers.html">Speakers</a></li>
+      <li><a href="schedule.html">Schedule</a></li>
+      <li><a href="sponsors.html">Sponsors</a></li>
+      <li><a href="register.html" class="active">Register</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <!-- Hero -->
+    <section class="hero">
+      <h1>Register for DevConf 2026</h1>
+      <p>Secure your seat and be part of one of the biggest tech conferences of the year.</p>
+    </section>
+
+    <!-- Registration Form -->
+    <section class="form-wrapper">
+      <form action="#" method="POST" class="registration-form">
+
+        <!-- Personal Information -->
+        <fieldset>
+          <legend>Personal Information</legend>
+
+          <label>First Name</label>
+          <input type="text" required placeholder="John">
+
+          <label>Last Name</label>
+          <input type="text" required placeholder="Doe">
+
+          <label>Email</label>
+          <input type="email" required placeholder="john@example.com">
+
+          <label>Phone</label>
+          <input type="tel" placeholder="+91 1234567890">
+
+          <label>Date of Birth</label>
+          <input type="date">
+        </fieldset>
+
+        <!-- Professional Details -->
+        <fieldset>
+          <legend>Professional Details</legend>
+
+          <label>Job Title</label>
+          <input type="text" placeholder="Software Engineer">
+
+          <label>Company</label>
+          <input type="text" placeholder="Your Company">
+
+          <label>Experience (Years)</label>
+          <input type="number" min="0" max="50">
+
+          <label>Tech Focus</label>
+          <select>
+            <option>Software</option>
+            <option>AI</option>
+            <option>Cloud</option>
+            <option>Cybersecurity</option>
+          </select>
+        </fieldset>
+
+        <!-- Preferences -->
+        <fieldset>
+          <legend>Preferences</legend>
+
+          <label>Attendance Mode</label>
+          <div class="option-group">
+            <label><input type="radio" name="attend"> In-Person</label>
+            <label><input type="radio" name="attend"> Virtual</label>
+          </div>
+
+          <label>Workshops</label>
+          <div class="option-group">
+            <label><input type="checkbox"> AI Workshop</label>
+            <label><input type="checkbox"> Cloud Workshop</label>
+          </div>
+
+          <label>T-Shirt Size</label>
+          <select>
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+            <option>XL</option>
+          </select>
+
+          <label>Additional Comments</label>
+          <textarea maxlength="500" placeholder="Enter your comments..."></textarea>
+        </fieldset>
+
+        <!-- Additional Info -->
+        <fieldset>
+          <legend>Additional Info</legend>
+
+          <label>LinkedIn Profile</label>
+          <input type="url" placeholder="https://linkedin.com/in/username">
+
+          <label>Upload Resume (PDF)</label>
+          <input type="file" accept=".pdf">
+        </fieldset>
+
+        <div class="terms">
+          <label><input type="checkbox" required> I agree to the Terms & Conditions</label>
+        </div>
+
+        <button type="submit" class="btn primary">Submit Registration</button>
+      </form>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 DevConf. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>
