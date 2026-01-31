@@ -1,0 +1,306 @@
+/* Day 4: Advanced Layout - DevConf Phase 2 (Professional Theme) */
+:root {
+  --primary: #6366f1;      /* Indigo */
+  --secondary: #0ea5e9;    /* Sky Blue */
+  --dark: #0f172a;         /* Slate Dark */
+  --gray: #475569;         /* Cool Gray */
+  --bg-light: #f8fafc;     /* Soft White */
+  --card-bg: #ffffff;
+  --border-soft: #e2e8f0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", "Segoe UI", sans-serif;
+  background-color: var(--bg-light);
+  color: var(--dark);
+  line-height: 1.7;
+}
+
+/* ================= NAVIGATION ================= */
+.sticky-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: auto;
+  padding: 1.2rem 2rem;
+}
+
+.logo {
+  font-weight: 800;
+  font-size: 1.6rem;
+  letter-spacing: 0.5px;
+}
+
+.logo span {
+  color: var(--primary);
+}
+
+.flex-menu {
+  display: flex;
+  list-style: none;
+  gap: 32px;
+}
+
+.flex-menu a {
+  text-decoration: none;
+  color: var(--gray);
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.flex-menu a:hover,
+.flex-menu a.active {
+  color: var(--primary);
+}
+
+/* ================= HERO ================= */
+.gradient-hero {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: white;
+  padding: 130px 20px;
+  text-align: center;
+}
+
+.gradient-hero h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 15px;
+}
+
+.gradient-hero p {
+  max-width: 700px;
+  margin: auto;
+  color: #cbd5f5;
+}
+
+.hero-btns {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 35px;
+}
+
+.btn {
+  padding: 13px 34px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.btn.primary {
+  background: var(--primary);
+  color: white;
+}
+
+.btn.secondary {
+  border: 1px solid #c7d2fe;
+  color: #e0e7ff;
+}
+
+/* ================= GRID SECTIONS ================= */
+.grid-layout,
+.speaker-grid {
+  display: grid;
+  gap: 30px;
+  max-width: 1200px;
+  margin: auto;
+  padding: 70px 20px;
+}
+
+.grid-layout {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.speaker-grid {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.info-card,
+.speaker-card {
+  background: var(--card-bg);
+  padding: 35px;
+  border-radius: 14px;
+  border: 1px solid var(--border-soft);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-card:hover,
+.speaker-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 30px rgba(15,23,42,0.08);
+}
+
+/* ================= SPEAKER IMAGE ================= */
+.image-wrapper img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--secondary);
+  margin-bottom: 20px;
+}
+
+/* ================= BADGE ================= */
+.badg {
+  display: inline-block;
+  background: #e0e7ff;
+  color: #3730a3;
+  padding: 5px 14px;
+  font-size: 0.75rem;
+  border-radius: 999px;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+/* ================= TIMELINE ================= */
+.timeline {
+  max-width: 800px;
+  margin: auto;
+  padding: 60px 20px;
+}
+
+.time-item {
+  display: flex;
+  gap: 25px;
+  margin-bottom: 35px;
+  padding-left: 15px;
+  border-left: 3px solid var(--primary);
+}
+
+.time-marker {
+  font-weight: 700;
+  color: var(--primary);
+  min-width: 70px;
+}
+
+/* ================= HEADINGS & FOOTER ================= */
+.header-title {
+  text-align: center;
+  padding-top: 70px;
+  font-size: 2.6rem;
+  font-weight: 800;
+}
+
+.main-shell {
+  min-height: 80vh;
+}
+
+.footer {
+  text-align: center;
+  padding: 45px;
+  background: var(--dark);
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+/* ===== SPEAKER PHOTO COLOR BAR ===== */
+
+.image-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 18px;
+  background: linear-gradient(
+    135deg,
+    rgba(99,102,241,0.12),
+    rgba(14,165,233,0.12)
+  );
+  border-radius: 16px;
+  margin-bottom: 20px;
+}
+
+/* Photo Styling */
+.image-wrapper img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+
+  /* Gradient Ring */
+  padding: 4px;
+  background: linear-gradient(135deg, #6366f1, #0ea5e9);
+
+  /* Clean separation */
+  box-shadow: 0 10px 25px rgba(15,23,42,0.15);
+}
+
+/* Hover effect for premium feel */
+.speaker-card:hover .image-wrapper {
+  background: linear-gradient(
+    135deg,
+    rgba(99,102,241,0.2),
+    rgba(14,165,233,0.2)
+  );
+}
+
+.speaker-card:hover img {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+
+/* ===== SCHEDULE TIMELINE COLORS ===== */
+
+.time-item {
+  background: white;
+  padding: 22px 25px;
+  border-radius: 14px;
+  margin-bottom: 30px;
+  display: flex;
+  gap: 25px;
+  border-left: 4px solid #6366f1;
+  box-shadow: 0 10px 20px rgba(15,23,42,0.06);
+  transition: transform 0.3s ease;
+}
+
+.time-item:hover {
+  transform: translateX(6px);
+}
+
+.time-marker {
+  font-weight: 700;
+  color: #6366f1;
+  min-width: 85px;
+}
+
+.time-content h3 {
+  margin-bottom: 6px;
+}
+
+.time-content p {
+  color: #475569;
+}
+
+/* Highlighted Event (Lunch / Special) */
+.time-item.highlight {
+  background: linear-gradient(135deg, #eef2ff, #e0f2fe);
+  border-left-color: #0ea5e9;
+}
+
+.time-item.highlight .time-marker {
+  color: #0ea5e9;
+}
+
+
