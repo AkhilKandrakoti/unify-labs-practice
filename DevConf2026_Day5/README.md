@@ -57,19 +57,9 @@ The site provides an engaging experience for users exploring conference details,
 
 ---
 
-## Screenshots
-
-**Desktop View**  
-![Desktop Screenshot](screenshots/desktop.png)  
-
-**Mobile View**  
-![Mobile Screenshot](screenshots/mobile.png)  
-
-*(Add your own screenshots in the `screenshots` folder.)*
-
----
 
 ## How to Use
 1. Clone the repository:  
    ```bash
    git clone https://github.com/yourusername/devconf-2026.git
+
