@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | DevConf 2026</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Sidebar Navigation -->
+<aside class="sidebar">
+  <div class="logo">Dev<span>Conf</span></div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="speakers.html">Speakers</a></li>
+    <li><a href="schedule.html">Schedule</a></li>
+    <li><a href="sponsors.html">Sponsors</a></li>
+    <li><a href="register.html">Register</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+</aside>
+
+<!-- Main Content -->
+<main class="main-content">
+
+  <!-- Hero Section -->
+  <section class="hero-section fade-in" style="background: linear-gradient(135deg,#0f2027,#203a43,#2c5364); color:white; text-align:center; padding:60px 20px; border-radius:12px; margin-bottom:40px;">
+    <h1>Contact DevConf 2026</h1>
+    <p>We’d love to hear from you! Reach out for inquiries, feedback, or collaboration opportunities.</p>
+  </section>
+
+  <!-- Contact Info Cards -->
+  <section class="card-container fade-in" style="display:flex; flex-wrap:wrap; gap:20px; justify-content:center; margin-bottom:40px;">
+    <div class="card" style="background:white; color:#ff3d6b; padding:25px; border-radius:12px; min-width:250px; max-width:300px; box-shadow:0 8px 20px rgba(0,0,0,0.15); text-align:center;">
+      <h2>Our Office</h2>
+      <p><strong>Address:</strong> DevConf HQ, Hyderabad</p>
+      <p><strong>Email:</strong> <a href="mailto:info@devconf.com" style="color:#e94560;">info@devconf.com</a></p>
+      <p><strong>Phone:</strong> <a href="tel:+911234567890" style="color:#e94560;">+91 1234567890</a></p>
+    </div>
+  </section>
+
+ <!-- Contact Form -->
+<section class="form-wrapper fade-in" style="max-width:800px; margin:0 auto 50px;">
+  <form class="registration-form" style="background:white; padding:30px; border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.15);">
+    
+    <fieldset>
+      <legend>Your Details</legend>
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" placeholder="Your Name" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Your Email" required>
+      
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" pattern="[0-9]{10}" title="Enter a 10-digit phone number">
+      
+      <label for="topic">Topic</label>
+      <select id="topic" name="topic">
+        <option value="general">General Inquiry</option>
+        <option value="support">Support</option>
+        <option value="partnership">Partnership</option>
+      </select>
+    </fieldset>
+
+    <fieldset>
+      <legend>Message</legend>
+      <label for="message">Your Message</label>
+      <textarea id="message" name="message" rows="6" placeholder="Your Message"></textarea>
+    </fieldset>
+
+    <fieldset>
+      <legend>Preferred Contact Method</legend>
+      <div class="option-group">
+        <label><input type="radio" name="contact_method" value="email" checked> Email</label>
+        <label><input type="radio" name="contact_method" value="phone"> Phone</label>
+      </div>
+    </fieldset>
+
+    <button type="submit" class="btn primary" style="background:#ff3d6b; color:white; padding:12px 25px; border-radius:8px; font-weight:bold; margin-top:15px;">Send Message</button>
+  </form>
+</section>
+
+  
+
+  <!-- CTA Section -->
+  <section class="cta fade-in" style="background:#203a43; color:#f9d423; text-align:center; padding:40px 20px; border-radius:12px; margin-bottom:20px;">
+    <h2>Still have questions?</h2>
+    <p>Reach out to us and we’ll be happy to help.</p>
+    <a href="contact.html" class="btn primary" style="background:#ff3d6b; color:white; padding:10px 20px; border-radius:6px;">Contact Us</a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer" style="background:#162447; color:white; text-align:center; padding:20px; border-radius:8px;">
+    &copy; 2026 DevConf. All Rights Reserved.
+  </footer>
+
+</main>
+
+</body>
+</html>
