@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quantum Component Library | Ultra-Neon Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+/* ========================================
+   CSS VARIABLES - DARK / LIGHT MODE
+======================================== */
+:root {
+    --bg: #030303;
+    --text: #ffffff;
+    --nav-link: #ffffff;
+    --nav-hover: #00f2ff;
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --speed: 0.5s;
+    --neon-primary: #00f2ff; /* Cyan */
+    --neon-secondary: #7000ff; /* Electric Purple */
+    --neon-pink: #ff007a;
+}
+
+/* LIGHT MODE OVERRIDE */
+#theme-toggle:checked ~ * {
+    --bg: #ffffff;
+    --text: #000000;
+    --nav-link: #000000;
+    --nav-hover: #0066ff;
+    --glass-bg: rgba(0,0,0,0.05);
+    --glass-border: rgba(0,0,0,0.1);
+    --neon-primary: #0066ff;
+}
+
+/* GLOBAL STYLING */
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Plus Jakarta Sans',sans-serif; }
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    transition: all var(--speed) ease;
+    overflow-x: hidden;
+}
+
+/* BACKGROUND NEON MESH */
+.neon-mesh {
+    position: fixed;
+    inset:0; z-index:-1;
+    background: radial-gradient(circle at 20% 30%, rgba(0,242,255,0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(112,0,255,0.15) 0%, transparent 40%);
+}
+
+/* HIDDEN CHECKBOXES */
+#theme-toggle, #menu-toggle { display:none; }
+
+/* ========================================
+   NAVBAR
+======================================== */
+.navbar {
+    position: fixed;
+    top: 25px; left: 50%;
+    transform: translateX(-50%);
+    width: 90%; max-width: 1100px;
+    height: 70px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(25px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    border-radius: 100px;
+    display:flex; justify-content:space-between; align-items:center;
+    padding: 0 40px;
+    z-index:1000;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: all var(--speed) ease;
+}
+
+.logo { font-weight:800; font-size:1.4rem; color: var(--text); }
+.logo span { color: var(--neon-primary); filter: drop-shadow(0 0 6px var(--neon-primary)); }
+
+.nav-links {
+    display:flex; gap:35px; list-style:none;
+}
+.nav-links a {
+    color: var(--nav-link);
+    font-weight:600;
+    font-size:0.95rem;
+    text-decoration:none;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 5px var(--neon-primary);
+}
+.nav-links a:hover {
+    color: var(--nav-hover);
+    text-shadow: 0 0 10px var(--neon-primary), 0 0 20px var(--neon-primary);
+}
+
+/* THEME TOGGLE */
+.toggle-btn {
+    width: 50px; height: 26px;
+    background: var(--glass-border);
+    border-radius:50px;
+    position: relative;
+    cursor:pointer;
+    border: 1px solid var(--glass-border);
+    transition: var(--speed) ease;
+}
+.toggle-btn::after {
+    content:''; position:absolute; top:3px; left:3px;
+    width:18px; height:18px;
+    background: var(--neon-primary);
+    border-radius:50%;
+    box-shadow:0 0 10px var(--neon-primary);
+    transition: 0.4s cubic-bezier(0.68,-0.55,0.265,1.55);
+}
+#theme-toggle:checked ~ .navbar .toggle-btn::after {
+    transform: translateX(24px);
+    background: var(--neon-pink);
+    box-shadow:0 0 10px var(--neon-pink);
+}
+
+/* HAMBURGER */
+.hamburger {
+    display:none; flex-direction:column; gap:6px; cursor:pointer;
+}
+.hamburger span {
+    width:28px; height:3px; background: var(--text); border-radius:10px;
+    transition: all var(--speed) ease;
+}
+
+/* MOBILE NAVIGATION */
+@media(max-width:750px){
+    .nav-links {
+        position:fixed; top:100px; left:-110%;
+        width:90%; background: var(--bg);
+        border:1px solid var(--glass-border); border-radius:30px;
+        flex-direction:column; padding:40px; gap:25px;
+        transition:0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
+    }
+    .hamburger { display:flex; }
+    #menu-toggle:checked ~ .navbar .nav-links { left:5%; }
+}
+
+/* ========================================
+   MAIN GRID CONTENT
+======================================== */
+.container {
+    max-width: 1200px; margin:160px auto 60px;
+    display:grid; grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+    gap:30px; padding:20px;
+}
+
+.card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius:40px; padding:50px 30px;
+    text-align:center; transition:0.5s cubic-bezier(0.175,0.885,0.32,1.275);
+    position:relative; overflow:hidden;
+}
+.card:hover {
+    transform: scale(1.03);
+    border-color: var(--neon-primary);
+    background: rgba(255,255,255,0.05);
+}
+.card-title { margin-bottom: 10px; font-size: 1.5rem; font-weight: 700; }
+.card-desc { opacity: 0.5; margin-bottom: 25px; font-size: 1rem; }
+
+/* ========================================
+   BUTTONS
+======================================== */
+/* 1. Neon Glow */
+.btn-neon-extreme {
+    padding:18px 45px;
+    background: transparent;
+    color: var(--neon-primary);
+    border:2px solid var(--neon-primary);
+    border-radius:15px;
+    font-weight:800; text-transform:uppercase; letter-spacing:2px;
+    cursor:pointer; transition:0.3s;
+    filter: drop-shadow(0 0 8px var(--neon-primary));
+}
+.btn-neon-extreme:hover {
+    background: var(--neon-primary);
+    color:#000;
+    filter: drop-shadow(0 0 25px var(--neon-primary));
+    transform: translateY(-3px);
+}
+
+/* 2. Rotating Rainbow Border */
+.btn-border-flow {
+    position:relative;
+    padding:18px 45px;
+    background: var(--bg);
+    color: var(--text);
+    border-radius:15px; border:none; cursor:pointer;
+    font-weight:700; z-index:1;
+}
+.btn-border-flow::before {
+    content:''; position:absolute;
+    top:-3px; left:-3px; right:-3px; bottom:-3px;
+    background: conic-gradient(from 0deg, var(--neon-primary), var(--neon-secondary), var(--neon-pink), var(--neon-primary));
+    border-radius:18px; z-index:-1;
+    animation: spin 3s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* 3. Magnetic Micro Interaction */
+.btn-magnetic {
+    padding:18px 45px;
+    background: var(--glass-border);
+    color: var(--text);
+    border:1px solid var(--glass-border);
+    border-radius:15px;
+    font-weight:700; cursor:pointer;
+    transition:0.4s;
+    display:inline-flex; align-items:center; gap:10px;
+}
+.btn-magnetic:hover {
+    background: var(--text);
+    color: var(--bg);
+    padding-right:60px;
+}
+.btn-magnetic span::after { content:' →'; opacity:0; transition:0.4s; }
+.btn-magnetic:hover span::after { opacity:1; margin-left:10px; }
+
+/* 4. Pulse Glow Button */
+.btn-pulse {
+    padding:18px 45px;
+    background: var(--neon-secondary);
+    color: #fff;
+    border:2px solid var(--neon-secondary);
+    border-radius:15px;
+    font-weight:700;
+    text-transform:uppercase;
+    cursor:pointer;
+    animation: pulse 2s infinite;
+}
+@keyframes pulse {
+    0% { box-shadow: 0 0 10px var(--neon-secondary); }
+    50% { box-shadow: 0 0 25px var(--neon-secondary); transform: scale(1.05); }
+    100% { box-shadow: 0 0 10px var(--neon-secondary); }
+}
+
+/* 5. Skew Hover Slide Button */
+.btn-skew-slide {
+    padding:18px 45px;
+    background: var(--bg);
+    color: var(--neon-pink);
+    border:2px solid var(--neon-pink);
+    border-radius:15px;
+    font-weight:700;
+    text-transform:uppercase;
+    cursor:pointer;
+    transition: 0.4s;
+}
+.btn-skew-slide:hover {
+    transform: skew(-10deg) translateX(10px);
+    background: var(--neon-pink);
+    color: var(--bg);
+}
+/* 6. 3D Extruded Button */
+.btn-3d {
+    position: relative;
+    padding: 18px 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text);
+    background: linear-gradient(145deg, #1f1f1f, #050505);
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    box-shadow: 0 6px 0 #000, 0 8px 15px rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
+    text-shadow: 0 2px 2px rgba(0,0,0,0.2);
+}
+
+.btn-3d:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 0 #000, 0 14px 20px rgba(0,0,0,0.5);
+}
+
+.btn-3d:active {
+    transform: translateY(2px);
+    box-shadow: 0 4px 0 #000, 0 6px 10px rgba(0,0,0,0.4);
+}
+
+
+</style>
+</head>
+<body>
+
+<input type="checkbox" id="theme-toggle">
+<input type="checkbox" id="menu-toggle">
+
+<div class="neon-mesh"></div>
+
+<nav class="navbar">
+    <div class="logo">UNIFY<span>LABS</span></div>
+    
+    <ul class="nav-links">
+        <li><a href="#">Experience</a></li>
+        <li><a href="#">Components</a></li>
+        <li><a href="#">Showcase</a></li>
+        <li><a href="#">Resources</a></li>
+    </ul>
+
+    <div style="display:flex; align-items:center; gap:20px;">
+        <label for="theme-toggle" class="toggle-btn"></label>
+        <label for="menu-toggle" class="hamburger">
+            <span></span><span></span><span></span>
+        </label>
+    </div>
+</nav>
+
+<main class="container">
+    <div class="card">
+        <h2 class="card-title">Vivid Glow</h2>
+        <p class="card-desc">Extreme filter: drop-shadow effect</p>
+        <button class="btn-neon-extreme">Light Up</button>
+    </div>
+
+    <div class="card">
+        <h2 class="card-title">Plasma Orbit</h2>
+        <p class="card-desc">Conic multi-color border flow</p>
+        <button class="btn-border-flow">Plasma Flow</button>
+    </div>
+
+    <div class="card">
+        <h2 class="card-title">System Logic</h2>
+        <p class="card-desc">Micro-interaction arrow reveal</p>
+        <button class="btn-magnetic"><span>Get Started</span></button>
+    </div>
+
+    <div class="card">
+        <h2 class="card-title">Neon Pulse</h2>
+        <p class="card-desc">Glowing pulse animation</p>
+        <button class="btn-pulse">Pulse</button>
+    </div>
+
+    <div class="card">
+        <h2 class="card-title">Skew Motion</h2>
+        <p class="card-desc">Skew and slide on hover</p>
+        <button class="btn-skew-slide">Slide</button>
+    </div>
+
+    <div class="card">
+    <h2 class="card-title">3D Extrude</h2>
+    <p class="card-desc">Pressable 3D effect with realistic shadows</p>
+    <button class="btn-3d">Press Me</button>
+</div>
+
+</main>
+
+</body>
+</html>
