@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register | DevConf 2026</title>
+  <link rel="stylesheet" href="style.css"> <!-- Modern CSS -->
+  <style>
+    /* Additional form-specific styling */
+    .registration-form {
+      background: #ffffffdd;
+      padding: 30px;
+      border-radius: 20px;
+      max-width: 800px;
+      margin: 40px auto;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .registration-form fieldset {
+      border: 1px solid #cbd5e1;
+      padding: 20px;
+      margin-bottom: 25px;
+      border-radius: 15px;
+    }
+
+    .registration-form legend {
+      font-weight: 600;
+      color: var(--primary, #1a73e8);
+      padding: 0 10px;
+    }
+
+    .registration-form label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+      color: var(--secondary, #0f172a);
+    }
+
+    .registration-form input,
+    .registration-form select,
+    .registration-form textarea {
+      width: 100%;
+      padding: 10px 15px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      border: 1px solid #cbd5e1;
+      font-size: 1rem;
+      transition: 0.3s;
+    }
+
+    .registration-form input:focus,
+    .registration-form select:focus,
+    .registration-form textarea:focus {
+      border-color: var(--primary, #1a73e8);
+      box-shadow: 0 0 10px rgba(26,115,232,0.2);
+      outline: none;
+    }
+
+    .registration-form .checkbox-group,
+    .registration-form .radio-group {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+    }
+
+    .registration-form .checkbox-group label,
+    .registration-form .radio-group label {
+      display: inline-block;
+      font-weight: 400;
+    }
+
+    .registration-form .btn {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      font-size: 1.1rem;
+      background: var(--primary, #1a73e8);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .registration-form .btn:hover {
+      background: var(--accent, #22c55e);
+      transform: scale(1.03);
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header & Navigation -->
+<header class="site-header fade-in">
+  <div class="logo">Dev<span>Conf</span> 2026</div>
+  <nav class="nav-bar">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="speakers.html">Speakers</a>
+    <a href="schedule.html">Schedule</a>
+    <a href="sponsors.html">Sponsors</a>
+    <a href="register.html" class="active">Register</a>
+    <a href="contact.html">Contact</a>
+    <a href="faq.html" class="active">FAQ</a>
+  </nav>
+</header>
+
+<!-- Main Content -->
+<main class="main-content container fade-in">
+  <section class="register-section">
+    <h1>Register for DevConf 2026</h1>
+
+    <form action="#" method="POST" class="registration-form">
+
+      <!-- Personal Information -->
+      <fieldset>
+        <legend>Personal Information</legend>
+        <label for="fname">First Name</label>
+        <input type="text" id="fname" name="fname" required placeholder="John">
+
+        <label for="lname">Last Name</label>
+        <input type="text" id="lname" name="lname" required placeholder="Doe">
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required placeholder="john@example.com">
+
+        <label for="phone">Phone</label>
+        <input type="tel" id="phone" name="phone" placeholder="+91 1234567890">
+
+        <label for="dob">Date of Birth</label>
+        <input type="date" id="dob" name="dob">
+      </fieldset>
+
+      <!-- Professional Details -->
+      <fieldset>
+        <legend>Professional Details</legend>
+        <label for="job">Job Title</label>
+        <input type="text" id="job" name="job" placeholder="Software Engineer">
+
+        <label for="company">Company</label>
+        <input type="text" id="company" name="company" placeholder="Your Company">
+
+        <label for="experience">Experience (Years)</label>
+        <input type="number" id="experience" name="experience" min="0" max="50" placeholder="5">
+
+        <label for="tech">Tech Focus</label>
+        <select id="tech" name="tech">
+          <optgroup label="Tech">
+            <option>Software</option>
+            <option>AI</option>
+            <option>Cloud</option>
+            <option>Cybersecurity</option>
+          </optgroup>
+        </select>
+      </fieldset>
+
+      <!-- Preferences -->
+      <fieldset>
+        <legend>Preferences</legend>
+
+        <label>Attendance Mode</label>
+        <div class="radio-group">
+          <input type="radio" id="inperson" name="attend" value="In-Person">
+          <label for="inperson">In-Person</label>
+
+          <input type="radio" id="virtual" name="attend" value="Virtual">
+          <label for="virtual">Virtual</label>
+        </div>
+
+        <label>Workshops</label>
+        <div class="checkbox-group">
+          <input type="checkbox" id="ai" name="workshops" value="AI Workshop">
+          <label for="ai">AI Workshop</label>
+
+          <input type="checkbox" id="cloud" name="workshops" value="Cloud Workshop">
+          <label for="cloud">Cloud Workshop</label>
+        </div>
+
+        <label for="tshirt">T-Shirt Size</label>
+        <select id="tshirt" name="tshirt">
+          <option>S</option>
+          <option>M</option>
+          <option>L</option>
+          <option>XL</option>
+        </select>
+
+        <label for="comments">Additional Comments</label>
+        <textarea id="comments" name="comments" maxlength="500" placeholder="Enter your comments..."></textarea>
+      </fieldset>
+
+      <!-- Additional Info -->
+      <fieldset>
+        <legend>Additional Info</legend>
+        <label for="linkedin">LinkedIn Profile</label>
+        <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/username">
+
+        <label for="resume">Upload Resume (PDF)</label>
+        <input type="file" id="resume" name="resume" accept=".pdf">
+      </fieldset>
+
+      <div class="form-group">
+        <input type="checkbox" id="terms" name="terms" required>
+        <label for="terms">I agree to the <a href="#">Terms & Conditions</a></label>
+      </div>
+
+      <button type="submit" class="btn">Submit Registration</button>
+    </form>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="site-footer fade-in">
+  &copy; 2026 DevConf. All Rights Reserved.
+</footer>
+
+</body>
+</html>

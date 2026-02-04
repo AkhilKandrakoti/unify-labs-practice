@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Day 5 – Advanced CSS Dashboard</title>
+
+<style>
+/* ===== GLOBAL THEME ===== */
+:root {
+  --bg-dark: #0f172a;
+  --bg-light: #111827;
+  --accent: #38bdf8;
+  --accent-soft: #0ea5e9;
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+  --card-bg: #1e293b;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #020617, #020617);
+  color: var(--text-main);
+}
+
+/* ===== LAYOUT ===== */
+.system {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: 100vh;
+}
+
+/* ===== SIDEBAR ===== */
+.nav {
+  background: linear-gradient(180deg, var(--bg-dark), var(--bg-light));
+  padding: 24px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.brand-mark {
+  width: 14px;
+  height: 14px;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 15px var(--accent);
+}
+
+.brand h1 {
+  font-size: 1.2rem;
+}
+
+.nav-title {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  margin: 20px 0 10px;
+  display: block;
+}
+
+.nav-item {
+  display: block;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  background: var(--accent);
+  color: #020617;
+}
+
+/* ===== MAIN ===== */
+.workspace {
+  padding: 24px;
+}
+
+/* TOP BAR */
+.command-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.status-chip {
+  padding: 6px 14px;
+  background: #22c55e;
+  color: #052e16;
+  border-radius: 20px;
+  font-size: 0.75rem;
+}
+
+/* ===== SECTIONS ===== */
+.page {
+  display: none;
+  animation: fade 0.4s ease;
+}
+
+.page.active {
+  display: block;
+}
+
+@keyframes fade {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* DASHBOARD GRID */
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.metric {
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 14px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.metric:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 20px rgba(56,189,248,0.25);
+}
+
+.metric h3 {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.metric-value {
+  font-size: 1.4rem;
+  margin-top: 10px;
+}
+
+/* PANEL */
+.panel {
+  margin-top: 30px;
+  background: var(--card-bg);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.panel-header {
+  background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+  color: #020617;
+  padding: 14px 20px;
+}
+
+.panel-body {
+  padding: 20px;
+}
+
+.log {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.success { background: rgba(34,197,94,0.15); }
+.warning { background: rgba(234,179,8,0.15); }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .system {
+    grid-template-columns: 1fr;
+  }
+  .nav {
+    display: flex;
+    overflow-x: auto;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="system">
+
+  <!-- SIDEBAR -->
+  <aside class="nav">
+    <div class="brand">
+      <span class="brand-mark"></span>
+      <h1>CSS•OS</h1>
+    </div>
+
+    <span class="nav-title">Core</span>
+    <div class="nav-item active" onclick="showPage('dashboard')">Dashboard</div>
+    <div class="nav-item" onclick="showPage('analytics')">Analytics</div>
+    <div class="nav-item" onclick="showPage('components')">Components</div>
+
+    <span class="nav-title">System</span>
+    <div class="nav-item" onclick="showPage('animations')">Animations</div>
+    <div class="nav-item" onclick="showPage('responsive')">Responsive</div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="workspace">
+
+    <header class="command-bar">
+      <div class="breadcrumbs">Day 5 • Advanced CSS</div>
+      <div class="status-chip">ONLINE</div>
+    </header>
+
+    <!-- DASHBOARD -->
+    <section id="dashboard" class="page active">
+      <div class="dashboard">
+        <div class="metric"><h3>Layout</h3><div class="metric-value">CSS Grid</div></div>
+        <div class="metric"><h3>Alignment</h3><div class="metric-value">Flexbox</div></div>
+        <div class="metric"><h3>Theme</h3><div class="metric-value">Dark UI</div></div>
+        <div class="metric"><h3>Status</h3><div class="metric-value">Stable</div></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">System Logs</div>
+        <div class="panel-body">
+          <div class="log success">✔ Grid layout active</div>
+          <div class="log success">✔ Navigation functional</div>
+          <div class="log warning">⚠ GPU usage moderate</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ANALYTICS -->
+    <section id="analytics" class="page">
+      <h2>Analytics Page</h2>
+      <p>Demonstrates multi-page navigation using JavaScript.</p>
+    </section>
+
+    <!-- COMPONENTS -->
+    <section id="components" class="page">
+      <h2>Reusable Components</h2>
+      <p>Cards, panels, logs, metrics styled with CSS.</p>
+    </section>
+
+    <!-- ANIMATIONS -->
+    <section id="animations" class="page">
+      <h2>Animations</h2>
+      <p>Hover effects, transitions and fade-in animations applied.</p>
+    </section>
+
+    <!-- RESPONSIVE -->
+    <section id="responsive" class="page">
+      <h2>Responsive Design</h2>
+      <p>Media queries adjust layout for mobile screens.</p>
+    </section>
+
+  </main>
+
+</div>
+
+<script>
+function showPage(pageId) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(pageId).classList.add('active');
+
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  event.target.classList.add('active');
+}
+</script>
+
+</body>
+</html>

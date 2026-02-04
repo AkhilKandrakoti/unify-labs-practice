@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- Responsive Design -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Speakers - DevConf 2026</title>
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= HEADER & NAVIGATION ================= -->
+<header>
+  <nav class="navbar" aria-label="Main Navigation">
+    <h1 class="logo">Dev<span>Conf</span></h1>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="speakers.html" class="active">Speakers</a></li>
+      <li><a href="schedule.html">Schedule</a></li>
+      <li><a href="sponsors.html">Sponsors</a></li>
+      <li><a href="register.html">Register</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ================= SPEAKERS HERO SECTION ================= -->
+<section class="hero-section">
+  <div class="hero-content">
+    <h1>Meet Our Global Speakers</h1>
+    <p class="hero-subtitle">Learn from world-class AI, Cloud & Web Experts</p>
+  </div>
+</section>
+
+<!-- ================= MAIN CONTENT ================= -->
+<main class="page-container">
+
+  <!-- ================= SPEAKERS LIST ================= -->
+  <section aria-labelledby="speakers-title">
+    <h2 id="speakers-title" class="page-title">Featured Keynote Speakers</h2>
+
+    <!-- Speaker 1 -->
+    <article class="speaker-profile" id="speaker-1">
+      <h3>Dr. Sarah Chen</h3>
+      <p class="role">AI Research Lead @ Google</p>
+      <p class="bio">
+        Expert in Multimodal AI and Deep Learning with 15+ years of industry research experience.
+      </p>
+
+      <!-- Video Introduction -->
+      <video controls width="100%" poster="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800">
+        <source src="sarah_intro.mp4" type="video/mp4">
+        <source src="sarah_intro.webm" type="video/webm">
+        Your browser does not support the video tag.
+      </video>
+    </article>
+
+    <!-- Speaker 2 -->
+    <article class="speaker-profile" id="speaker-2">
+      <h3>Mark Thorne</h3>
+      <p class="role">CTO @ CloudMesh</p>
+      <p class="bio">
+        Pioneer in serverless architectures and distributed systems used by millions of developers.
+      </p>
+
+      <!-- Video Introduction -->
+      <video controls width="100%" poster="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800">
+        <source src="mark_intro.mp4" type="video/mp4">
+        <source src="mark_intro.webm" type="video/webm">
+        Your browser does not support the video tag.
+      </video>
+    </article>
+
+    <!-- Speaker 3 -->
+    <article class="speaker-profile" id="speaker-3">
+      <h3>Elena Rodriguez</h3>
+      <p class="role">Principal Architect @ Netflix</p>
+      <p class="bio">
+        Maintainer of popular distributed system libraries and cloud scalability expert.
+      </p>
+
+      <!-- Video Introduction -->
+      <video controls width="100%" poster="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800">
+        <source src="elena_intro.mp4" type="video/mp4">
+        <source src="elena_intro.webm" type="video/webm">
+        Your browser does not support the video tag.
+      </video>
+    </article>
+
+  </section>
+
+  <!-- ================= FEEDBACK FORM ================= -->
+  <section class="content-box" aria-labelledby="feedback-title">
+    <h2 id="feedback-title">Speaker Feedback Form</h2>
+
+    <form action="#" method="post">
+      <label for="name">Your Name:</label><br>
+      <input type="text" id="name" name="name" required placeholder="Enter your name"><br><br>
+
+      <label for="speaker">Select Speaker:</label><br>
+      <select id="speaker" name="speaker">
+        <option>Dr. Sarah Chen</option>
+        <option>Mark Thorne</option>
+        <option>Elena Rodriguez</option>
+      </select><br><br>
+
+      <label for="feedback">Your Feedback:</label><br>
+      <textarea id="feedback" name="feedback" rows="5" maxlength="500" placeholder="Share your experience..." required></textarea><br><br>
+
+      <button type="submit" class="primary-btn">Submit Feedback</button>
+    </form>
+  </section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+  <p>&copy; 2026 DevConf India. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

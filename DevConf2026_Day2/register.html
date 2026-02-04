@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Register | DevConf 2026</title>
+</head>
+<body>
+<header><h1>Register for DevConf 2026</h1></header>
+<nav>
+<a href="index.html">Home</a>
+<a href="register.html">Register</a>
+</nav>
+
+
+<main>
+<form action="#" method="POST">
+
+
+<fieldset>
+<legend>Personal Information</legend>
+<label for="fname">First Name:</label>
+<input type="text" id="fname" name="fname" required>
+
+
+<label for="lname">Last Name:</label>
+<input type="text" id="lname" name="lname" required>
+
+
+<label>Email:</label>
+<input type="email" required>
+
+
+<label>Phone:</label>
+<input type="tel">
+
+
+<label>DOB:</label>
+<input type="date">
+</fieldset>
+
+
+<fieldset>
+<legend>Professional Details</legend>
+<input type="text" placeholder="Job Title">
+<input type="text" placeholder="Company">
+<input type="number" min="0" max="50" placeholder="Experience Years">
+
+
+<select>
+<optgroup label="Tech">
+<option>Software</option>
+<option>AI</option>
+</optgroup>
+</select>
+</fieldset>
+
+
+<fieldset>
+<legend>Preferences</legend>
+<input type="radio" name="attend"> In-Person
+<input type="radio" name="attend"> Virtual
+
+
+<input type="checkbox"> AI Workshop
+<input type="checkbox"> Cloud Workshop
+
+
+<select>
+<option>S</option><option>M</option><option>L</option>
+</select>
+
+
+<textarea maxlength="500"></textarea>
+</fieldset>
+
+
+<fieldset>
+<legend>Additional Info</legend>
+<textarea></textarea>
+<select><option>LinkedIn</option></select>
+<input type="file" accept=".pdf">
+</fieldset>
+
+
+<input type="checkbox" required> I agree Terms
+</html>
