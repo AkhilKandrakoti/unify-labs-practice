@@ -1,72 +1,496 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Akhil Steven | Frontend Developer</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Akhil KANDRAKOTI | Frontend Engineer</title>
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+/* ================= ROOT THEME ================= */
+:root{
+  --bg:#030303;
+  --text:#ffffff;
+  --muted:#b5b5b5;
+  --glass:rgba(255,255,255,0.04);
+  --border:rgba(255,255,255,0.12);
+  --neon:#00f2ff;
+  --purple:#7000ff;
+  --pink:#ff007a;
+  --speed:.5s;
+}
+
+#theme-toggle:checked ~ *{
+  --bg:#ffffff;
+  --text:#000;
+  --muted:#444;
+  --glass:rgba(0,0,0,0.05);
+  --border:rgba(0,0,0,0.12);
+  --neon:#0066ff;
+}
+
+/* ================= BASE ================= */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Plus Jakarta Sans',sans-serif}
+body{
+  background:var(--bg);
+  color:var(--text);
+  transition:var(--speed);
+  overflow-x:hidden;
+}
+
+/* ================= BACKGROUND ================= */
+.neon-mesh{
+  position:fixed;inset:0;z-index:-1;
+  background:
+   radial-gradient(circle at 20% 30%, rgba(0,242,255,.15), transparent 40%),
+   radial-gradient(circle at 80% 70%, rgba(112,0,255,.18), transparent 40%);
+}
+
+/* ================= ACCESSIBILITY ================= */
+.skip-link{
+  position:absolute;top:-100px;left:0;
+  background:#000;color:#fff;padding:10px;z-index:999;
+}
+.skip-link:focus{top:0}
+
+/* ================= NAV ================= */
+header{
+  position:fixed;top:25px;left:50%;
+  transform:translateX(-50%);
+  width:90%;max-width:1100px;
+  background:var(--glass);
+  backdrop-filter:blur(25px);
+  border:1px solid var(--border);
+  border-radius:100px;
+  padding:18px 40px;
+  z-index:1000;
+}
+
+nav{
+  display:flex;justify-content:space-between;align-items:center;
+}
+
+.logo{
+  font-size:1.4rem;font-weight:800;
+}
+.logo span{
+  color:var(--neon);
+  filter:drop-shadow(0 0 6px var(--neon));
+}
+
+.nav-links{
+  list-style:none;display:flex;gap:35px;
+}
+.nav-links a{
+  color:var(--text);
+  text-decoration:none;
+  font-weight:600;
+  transition:.3s;
+}
+.nav-links a:hover{
+  color:var(--neon);
+  text-shadow:0 0 15px var(--neon);
+}
+
+/* ================= TOGGLE ================= */
+#theme-toggle{display:none}
+.toggle{
+  width:48px;height:26px;border-radius:40px;
+  background:var(--border);cursor:pointer;
+  position:relative;
+}
+.toggle::after{
+  content:'';
+  width:18px;height:18px;
+  background:var(--neon);
+  border-radius:50%;
+  position:absolute;top:4px;left:4px;
+  transition:.4s cubic-bezier(.68,-0.55,.27,1.55);
+  box-shadow:0 0 10px var(--neon);
+}
+#theme-toggle:checked ~ header .toggle::after{
+  transform:translateX(22px);
+  background:var(--pink);
+}
+
+/* ================= SECTIONS ================= */
+main{
+  max-width:1200px;
+  margin:180px auto 80px;
+  padding:20px;
+}
+
+section{
+  margin-bottom:120px;
+}
+
+h1{
+  font-size:clamp(3rem,6vw,5rem);
+  font-weight:800;
+}
+h1 span{
+  background:linear-gradient(135deg,var(--neon),var(--purple));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+h2{
+  font-size:2.2rem;
+  margin-bottom:40px;
+}
+
+/* ================= ABOUT ================= */
+.about p{
+  max-width:700px;
+  color:var(--muted);
+  font-size:1.1rem;
+  margin-top:25px;
+}
+
+/* ================= GRID ================= */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:30px;
+}
+
+.card{
+  background:var(--glass);
+  border:1px solid var(--border);
+  border-radius:35px;
+  padding:45px 30px;
+  text-align:center;
+  transition:.5s cubic-bezier(.175,.885,.32,1.275);
+}
+.card:hover{
+  transform:scale(1.05);
+  border-color:var(--neon);
+  box-shadow:0 0 30px rgba(0,242,255,.25);
+}
+
+/* ================= BUTTON ================= */
+.btn{
+  margin-top:25px;
+  padding:16px 45px;
+  border-radius:15px;
+  border:2px solid var(--neon);
+  background:transparent;
+  color:var(--neon);
+  font-weight:800;
+  letter-spacing:2px;
+  cursor:pointer;
+  transition:.3s;
+}
+.btn:hover{
+  background:var(--neon);
+  color:#000;
+  box-shadow:0 0 30px var(--neon);
+  transform:translateY(-4px);
+}
+
+/* ================= FOOTER ================= */
+footer{
+  text-align:center;
+  color:var(--muted);
+  padding-bottom:40px;
+}
+/* ===== DARK MODE VISIBILITY BOOST ===== */
+:root header{
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.08),
+      rgba(255,255,255,0.02)
+    );
+  box-shadow:
+    0 8px 40px rgba(0,0,0,0.6),
+    inset 0 0 0 1px rgba(255,255,255,0.15);
+}
+/* Improve text readability on dark glass */
+header,
+header a,
+.logo{
+  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+}
+.logo{
+  color:var(--text);
+  text-shadow:
+    0 0 1px rgba(255,255,255,0.8),
+    0 6px 20px rgba(0,0,0,0.9);
+}
+/* ===== NAV LINK VISIBILITY FIX (DARK MODE) ===== */
+.nav-links a{
+  color: var(--text);
+  opacity: 0.85;
+  text-shadow:
+    0 2px 6px rgba(0,0,0,0.8),
+    0 0 12px rgba(0,242,255,0.15);
+}
+/* Stronger contrast only in dark mode */
+:root body{
+  --nav-contrast: rgba(255,255,255,0.9);
+}
+
+.nav-links a{
+  color: var(--nav-contrast);
+}
+.nav-links a:hover{
+  color: var(--neon);
+  opacity: 1;
+  text-shadow:
+    0 0 8px var(--neon),
+    0 0 22px rgba(0,242,255,0.6);
+}
+header{
+  backdrop-filter: blur(30px) saturate(160%);
+}
+section{
+  scroll-margin-top: 160px;
+}
+
+@media (max-width: 768px){
+  h1{font-size:2.4rem}
+  header{padding:14px 24px}
+  .nav-links{gap:18px;font-size:.9rem}
+}
+section{
+  animation: fadeUp .8s ease both;
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(40px)}
+  to{opacity:1;transform:none}
+}
+
+/* ===== Hamburger Menu ===== */
+.nav-toggle{display:none}
+
+.hamburger{
+  display:none;
+  flex-direction:column;
+  justify-content:space-between;
+  width:28px;
+  height:20px;
+  cursor:pointer;
+}
+
+.hamburger span{
+  display:block;
+  height:3px;
+  width:100%;
+  background:var(--neon);
+  border-radius:2px;
+  transition:.3s;
+}
+
+/* Mobile Styles */
+@media (max-width:768px){
+  .hamburger{display:flex}
+  .nav-links{
+    position:fixed;
+    top:80px; /* below header */
+    right:-100%;
+    background:var(--bg);
+    height:calc(100vh - 80px);
+    width:220px;
+    flex-direction:column;
+    gap:25px;
+    padding:20px;
+    transition:.3s;
+    border-left:1px solid var(--border);
+    backdrop-filter:blur(20px);
+    z-index:999;
+  }
+  .nav-links li{margin:0}
+  
+  /* Show menu when toggled */
+  #nav-toggle:checked ~ .nav-links{
+    right:0;
+  }
+
+  /* Animate hamburger to X */
+  #nav-toggle:checked + .hamburger span:nth-child(1){
+    transform:rotate(45deg) translate(5px,5px);
+  }
+  #nav-toggle:checked + .hamburger span:nth-child(2){
+    opacity:0;
+  }
+  #nav-toggle:checked + .hamburger span:nth-child(3){
+    transform:rotate(-45deg) translate(5px,-5px);
+  }
+}
+
+
+
+</style>
 </head>
+
 <body>
 
-  <!-- Accessibility -->
-  <a href="#main" class="skip-link">Skip to Content</a>
+<a href="#main" class="skip-link">Skip to content</a>
+<input type="checkbox" id="theme-toggle">
 
-  <!-- Header -->
-  <header>
-    <nav class="navbar">
-      <h1 class="logo">Akhil Steven</h1>
+<div class="neon-mesh"></div>
 
-      <!-- Mobile Menu Toggle -->
-      <input type="checkbox" id="menu-toggle">
-      <label for="menu-toggle" class="hamburger">☰</label>
+<header>
+<nav>
+  <div class="logo">AKHIL<span> KANDRAKOTI</span></div>
 
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+ <input type="checkbox" id="nav-toggle" class="nav-toggle">
+<label for="nav-toggle" class="hamburger" aria-label="Toggle navigation menu">
+  <span></span>
+  <span></span>
+  <span></span>
+</label>
 
-      <!-- Dark Mode Toggle -->
-      <button id="themeToggle">🌙</button>
-    </nav>
-  </header>
+<ul class="nav-links">
+  <li><a href="#about">About</a></li>
+  <li><a href="#skills">Skills</a></li>
+  <li><a href="#experience">Experience</a></li>
+  <li><a href="#projects">Projects</a></li>
+  <li><a href="#contact">Contact</a></li>
+</ul>
 
-  <!-- Main Content -->
-  <main id="main">
 
-    <section id="about">
-      <h2>About Me</h2>
-      <p>Professional summary will go here.</p>
-    </section>
+<label
+  for="theme-toggle"
+  class="toggle"
+  aria-label="Toggle dark and light mode"
+  role="switch"
+></label>
 
-    <section id="skills">
-      <h2>Skills</h2>
-    </section>
+</nav>
+</header>
 
-    <section id="projects">
-      <h2>Projects</h2>
-    </section>
+<main id="main">
 
-    <section id="contact">
-      <h2>Contact</h2>
-    </section>
+<section id="about" class="about">
+  <h1>Frontend <span>Engineer</span></h1>
+  <p>
+    I’m Akhil Kandrakoti — a frontend developer specializing in high-end UI,
+    CSS-only interactions, dark-mode systems, and visually striking
+    component libraries built with production-level discipline.
+  </p>
+</section>
 
-  </main>
+<section id="skills">
+  <h2>Core Skills</h2>
+  <div class="grid">
+    <article class="card">Semantic HTML5</article>
+    <article class="card">Advanced CSS Animations</article>
+    <article class="card">Glassmorphism Systems</article>
+    <article class="card">CSS-Only Dark Mode</article>
+    <article class="card">Git & Deployment</article>
+  </div>
+</section>
 
-  <!-- Aside -->
-  <aside>
-    <p>Quick info / highlights</p>
-  </aside>
+<section id="experience">
+  <h2>Experience</h2>
 
-  <!-- Footer -->
-  <footer>
-    <p>© 2026 Akhil Steven</p>
-  </footer>
+  <div class="card" style="text-align:left">
+    <h3>Frontend Developer Intern</h3>
 
-  <!-- JS -->
-  <script src="js/theme.js"></script>
+    <ul class="muted" style="margin-top:18px;line-height:1.8;padding-left:18px;">
+      <li>
+        Designed and developed responsive UI layouts using semantic HTML5
+        and modern CSS architecture.
+      </li>
+      <li>
+        Implemented a scalable CSS variable–based dark mode system,
+        improving theme consistency across components.
+      </li>
+      <li>
+        Built animated, reusable UI components with pure CSS
+        (glassmorphism, hover micro-interactions, neon effects).
+      </li>
+      <li>
+        Improved visual performance and accessibility by optimizing contrast,
+        spacing, and responsive behavior across devices.
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+<section id="projects" aria-labelledby="projects-title">
+  <h2 id="projects-title">Projects</h2>
+
+  <div class="grid">
+    <figure class="card" role="group" aria-labelledby="project-1-title">
+      <figcaption>
+        <h3 id="project-1-title">Quantum Component Library</h3>
+        <p class="muted">
+          High-performance ultra-neon UI component system built with pure
+          HTML5, CSS animations, and accessibility-first design principles.
+        </p>
+        <button class="btn" aria-label="View Quantum Component Library project">
+          View Project
+        </button>
+      </figcaption>
+    </figure>
+
+    <figure class="card" role="group" aria-labelledby="project-2-title">
+      <figcaption>
+        <h3 id="project-2-title">Dark Mode System</h3>
+        <p class="muted">
+          Scalable CSS variable–based dark & light theme architecture
+          with smooth transitions and zero JavaScript dependency.
+        </p>
+        <button class="btn" aria-label="View Dark Mode System project">
+          View Project
+        </button>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+
+
+
+
+
+<section id="contact">
+  <h2>Let’s Work Together</h2>
+
+  <p class="muted" style="max-width:700px;margin-bottom:30px;">
+    I’m actively looking for opportunities where I can contribute as a frontend developer,
+    build high-quality user interfaces, and grow alongside a strong engineering team.
+    If you’re a recruiter, mentor, or collaborator — I’d love to connect.
+  </p>
+
+  <div class="grid">
+   <article class="card">
+
+      <h3>Email</h3>
+      <p class="muted">akhilkandrakoti712@gmail.com</p>
+      <button class="btn">Send Mail</button>
+   </article>
+
+
+    <article class="card">
+
+      <h3>GitHub</h3>
+      <p class="muted">github.com/AkhilKandrakoti</p>
+      <button class="btn">View Profile</button>
+    </article>
+
+
+    <article class="card">
+
+      <h3>LinkedIn</h3>
+      <p class="muted">linkedin.com/in/akhil-kandrakoti-471105357/</p>
+      <button class="btn">Connect</button>
+    </article>
+
+  </div>
+</section>
+
+</main>
+
+<footer>
+© 2026 Akhil Kandrakoti — Pure HTML & CSS
+</footer>
+
 </body>
 </html>
