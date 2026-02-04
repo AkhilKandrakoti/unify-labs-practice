@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Akhil KANDRAKOTI | Frontend Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+<input type="checkbox" id="theme-toggle">
+
+<div class="neon-mesh"></div>
+
+<header>
+<nav>
+  <div class="logo">AKHIL<span> KANDRAKOTI</span></div>
+
+  <input type="checkbox" id="nav-toggle" class="nav-toggle">
+  <label for="nav-toggle" class="hamburger" aria-label="Toggle navigation menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </label>
+
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+
+  <label for="theme-toggle" class="toggle" aria-label="Toggle dark/light mode" role="switch"></label>
+
+</nav>
+</header>
+
+<main id="main">
+
+<section id="about" class="about">
+  <h1>Frontend <span>Engineer</span></h1>
+  <p>
+    I’m Akhil Kandrakoti — a frontend developer specializing in high-end UI,
+    CSS-only interactions, dark-mode systems, and visually striking
+    component libraries built with production-level discipline.
+  </p>
+</section>
+
+<section id="skills">
+  <h2>Core Skills</h2>
+  <div class="grid">
+    <article class="card">Semantic HTML5</article>
+    <article class="card">Advanced CSS Animations</article>
+    <article class="card">Glassmorphism Systems</article>
+    <article class="card">CSS-Only Dark Mode</article>
+    <article class="card">Git & Deployment</article>
+  </div>
+</section>
+
+<section id="experience">
+  <h2>Experience</h2>
+  <div class="card" style="text-align:left">
+    <h3>Frontend Developer Intern</h3>
+    <ul class="muted" style="margin-top:18px;line-height:1.8;padding-left:18px;">
+      <li>Designed and developed responsive UI layouts using semantic HTML5 and modern CSS architecture.</li>
+      <li>Implemented a scalable CSS variable–based dark mode system, improving theme consistency across components.</li>
+      <li>Built animated, reusable UI components with pure CSS (glassmorphism, hover micro-interactions, neon effects).</li>
+      <li>Improved visual performance and accessibility by optimizing contrast, spacing, and responsive behavior across devices.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="projects" aria-labelledby="projects-title">
+  <h2 id="projects-title">Projects</h2>
+
+  <div class="grid">
+    <figure class="card" role="group" aria-labelledby="project-1-title">
+      <figcaption>
+        <h3 id="project-1-title">Quantum Component Library</h3>
+        <p class="muted">
+          High-performance ultra-neon UI component system built with pure
+          HTML5, CSS animations, and accessibility-first design principles.
+        </p>
+        <button class="btn" aria-label="View Quantum Component Library project">View Project</button>
+      </figcaption>
+    </figure>
+
+    <figure class="card" role="group" aria-labelledby="project-2-title">
+      <figcaption>
+        <h3 id="project-2-title">Dark Mode System</h3>
+        <p class="muted">
+          Scalable CSS variable–based dark & light theme architecture
+          with smooth transitions and zero JavaScript dependency.
+        </p>
+        <button class="btn" aria-label="View Dark Mode System project">View Project</button>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Let’s Work Together</h2>
+
+  <p class="muted" style="max-width:700px;margin-bottom:30px;">
+    I’m actively looking for opportunities where I can contribute as a frontend developer,
+    build high-quality user interfaces, and grow alongside a strong engineering team.
+    If you’re a recruiter, mentor, or collaborator — I’d love to connect.
+  </p>
+
+  <div class="grid contact-grid">
+    <!-- Contact Cards -->
+    <article class="card">
+      <h3>Email</h3>
+      <p class="muted">akhilkandrakoti712@gmail.com</p>
+      <button class="btn" onclick="window.location.href='mailto:akhilkandrakoti712@gmail.com'">Send Mail</button>
+    </article>
+
+    <article class="card">
+      <h3>GitHub</h3>
+      <p class="muted">github.com/AkhilKandrakoti</p>
+      <button class="btn" onclick="window.open('https://github.com/AkhilKandrakoti','_blank')">View Profile</button>
+    </article>
+
+    <article class="card">
+      <h3>LinkedIn</h3>
+      <p class="muted">linkedin.com/in/akhil-kandrakoti-471105357/</p>
+      <button class="btn" onclick="window.open('https://linkedin.com/in/akhil-kandrakoti-471105357/','_blank')">Connect</button>
+    </article>
+
+    <!-- Contact Form -->
+    <article class="card" style="grid-column: span 3;">
+      <h3>Send a Message</h3>
+      <form id="contact-form" action="#" method="POST">
+        <label for="name">Name*</label>
+        <input type="text" id="name" name="name" placeholder="Your Name" required>
+
+        <label for="email">Email*</label>
+        <input type="email" id="email" name="email" placeholder="Your Email" required>
+
+        <label for="message">Message*</label>
+        <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+    </article>
+  </div>
+</section>
+
+
+</main>
+
+<footer>
+© 2026 Akhil Kandrakoti — Pure HTML & CSS
+</footer>
+
+</body>
+</html>
