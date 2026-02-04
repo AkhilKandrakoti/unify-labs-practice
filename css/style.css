@@ -1,122 +1,65 @@
 /* =========================
-   CSS RESET + BASE STYLES
-========================= */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  line-height: 1.6;
-  background: var(--bg);
-  color: var(--text);
-  transition: background 0.3s, color 0.3s;
-}
-
-/* =========================
-   THEME VARIABLES
+   PREMIUM DESIGN SYSTEM
 ========================= */
 :root {
-  --bg: #ffffff;
-  --text: #111111;
-  --accent: #00f7ff;
+  --bg: #f9fafb;
+  --surface: rgba(255, 255, 255, 0.65);
+  --text: #0f172a;
+  --muted: #64748b;
+
+  --accent: linear-gradient(135deg, #6366f1, #a855f7);
+
+  --radius: 16px;
+  --blur: blur(16px);
+  --shadow: 0 20px 40px rgba(0,0,0,0.08);
 }
 
 [data-theme="dark"] {
-  --bg: #0b0b0b;
-  --text: #f5f5f5;
-}
+  --bg: #0b0f1a;
+  --surface: rgba(15, 23, 42, 0.65);
+  --text: #e5e7eb;
+  --muted: #94a3b8;
 
-/* =========================
-   ACCESSIBILITY
-========================= */
-.skip-link {
-  position: absolute;
-  left: -999px;
-  top: 10px;
-  background: black;
-  color: white;
-  padding: 8px;
-  z-index: 100;
+  --shadow: 0 20px 50px rgba(0,0,0,0.6);
 }
-
-.skip-link:focus {
-  left: 10px;
-}
-
-/* =========================
-   NAVBAR
-========================= */
-header {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: var(--bg);
-  border-bottom: 1px solid #ddd;
-}
-
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem;
-}
+  padding: 1rem 1.5rem;
 
-.logo {
-  font-size: 1.3rem;
-}
+  background: var(--surface);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
 
-.nav-links {
-  list-style: none;
-  display: none;
-  flex-direction: column;
-  gap: 1rem;
-  position: absolute;
-  top: 64px;
-  right: 1rem;
-  background: var(--bg);
-  padding: 1rem;
-  border-radius: 8px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin: 1rem;
 }
-
+header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: transparent;
+}
 .nav-links a {
+  position: relative;
   text-decoration: none;
   color: var(--text);
+  font-weight: 500;
 }
 
-/* Hamburger */
-.hamburger {
-  font-size: 1.5rem;
-  cursor: pointer;
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.4s cubic-bezier(.4,0,.2,1);
 }
 
-#menu-toggle {
-  display: none;
-}
-
-#menu-toggle:checked ~ .nav-links {
-  display: flex;
-}
-
-/* =========================
-   DESKTOP NAV
-========================= */
-@media (min-width: 768px) {
-  .hamburger {
-    display: none;
-  }
-
-  .nav-links {
-    position: static;
-    display: flex;
-    flex-direction: row;
-    gap: 2rem;
-    background: none;
-  }
+.nav-links a:hover::after {
+  width: 100%;
 }
