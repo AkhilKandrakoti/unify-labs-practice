@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Dashboard Collection</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="dashboard-container">
+        <header>
+            <h1>UNIFY LABS </h1>
+            <h2>Project 2: Dashboard Collection</h2>
+            <p>Intermediate-Advanced CSS Techniques</p>
+        </header>
+
+        <!-- CARD GRID -->
+        <section class="card-grid">
+
+            <!-- 3D FLIP CARD -->
+            <div class="card-wrapper">
+                <h3>3D-Flip Card</h3>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="card-content">
+                                <span>Project 2</span>
+                                <!-- Animated Progress Bar -->
+                                <div class="progress-bar">
+                                    <span class="progress-fill">90%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <h4>Task Details</h4>
+                            <ul>
+                                <li>CSS Grid</li>
+                                <li>3D Transforms</li>
+                                <li>Hover Effects</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GLASSMORPHISM CARD WITH IMAGE -->
+            <div class="card-wrapper">
+                <h3>Glassmorphism Card</h3>
+                <div class="glass-card">
+                   <img src="dashboard-icon.png" alt="Dashboard Icon" class="glass-img">
+                    <div class="glass-text">
+                        <h4>DASHBOARD</h4>
+                        <p>COLLECTION</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ANIMATED BORDER CARD -->
+            <div class="card-wrapper">
+                <h3>Animated Border Card</h3>
+                <div class="animated-border-card">
+    <div class="inner-content">
+        <img src="live-icon.jpg" alt="Live Update" class="live-icon">
+        <h4>LIVE UPDATES</h4>
+        <small>DATA STREAM ACTIVE</small>
+    </div>
+</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- UPDATED FAQ SECTION WITH 3 ITEMS -->
+        <section class="faq-section">
+            <h3>FAQ</h3>
+
+            <div class="faq-item">
+                <input type="checkbox" id="faq1">
+                <label for="faq1">What is this project? <span>+</span></label>
+                <div class="faq-content">
+                    <p>A collection of advanced CSS components including Grid, Glassmorphism, and 3D effects.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <input type="checkbox" id="faq2">
+                <label for="faq2">How to use? / Compatibility? <span>+</span></label>
+                <div class="faq-content">
+                    <p>Compatible with all modern browsers supporting CSS Grid and Backdrop-filter.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <input type="checkbox" id="faq3">
+                <label for="faq3">Browser Support <span>+</span></label>
+                <div class="faq-content">
+                    <p>This dashboard works on Chrome, Edge, Firefox, and Safari. Older browsers may not fully support glass or 3D effects.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+    <input type="checkbox" id="faq4">
+    <label for="faq4">Can I customize the cards? <span>+</span></label>
+    <div class="faq-content">
+        <p>Yes! You can easily change colors, text, images, and gradients. All cards are fully CSS-based and customizable.</p>
+    </div>
+</div>
+        </section>
+
+    </main>
+
+</body>
+</html>
