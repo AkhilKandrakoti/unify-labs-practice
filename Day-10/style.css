@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
+
+:root {
+    --primary: #111827; 
+    --brand: #6366f1; 
+    --bg: #ffffff; 
+    --bg-alt: #f9fafb; 
+    --border: #e5e7eb;
+    --text: #111827; 
+    --text-muted: #6b7280; 
+    --radius-xl: 24px; 
+    --radius-md: 12px;
+    --shadow-lg: rgba(0,0,0,0.15);
+}
+
+/* RESET */
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+body { background: #000; min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; color: var(--text); }
+
+/* AURA SHELL */
+.aura-shell { 
+    width: 95%; 
+    max-width: 1000px; 
+    height: 80vh; 
+    background: var(--bg); 
+    border-radius: var(--radius-xl); 
+    display: flex; 
+    flex-direction: column; 
+    overflow: hidden; 
+    box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+    position: relative;
+    transition: all 0.3s ease-in-out;
+}
+
+/* HEADER */
+.aura-header { 
+    height: 70px; 
+    border-bottom: 1px solid var(--border); 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 0 30px;
+    background: #fff;
+}
+.a-brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.2rem; }
+.a-logo { width: 32px; height: 32px; background: #000; color: #fff; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; }
+.a-brand span span { color: var(--text-muted); font-size: 0.65rem; margin-left: 6px; font-family: 'JetBrains Mono'; font-weight: 500; }
+
+.a-actions { display: flex; align-items: center; gap: 20px; }
+.a-btn-tour { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); padding: 8px 18px; border: 1.5px solid var(--border); border-radius: 50px; display: flex; align-items: center; gap: 8px; transition: all 0.3s; background: #fff; }
+.a-btn-tour:hover { background: var(--brand); color: #fff; border-color: var(--brand); }
+.a-pulse { width: 8px; height: 8px; background: var(--brand); border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(99,102,241,0.4); } 100% { box-shadow: 0 0 0 15px rgba(99,102,241,0); } }
+
+/* CONTENT GRID */
+.aura-content { flex: 1; display: grid; grid-template-columns: 280px 1fr; overflow: hidden; }
+
+/* SIDEBAR */
+.aura-sidebar { background: var(--bg-alt); padding: 40px 30px; border-right: 1px solid var(--border); display: flex; flex-direction: column; }
+.s-header h2 { font-size: 1rem; margin-bottom: 15px; font-weight: 700; }
+.s-p-bar { height: 6px; background: #e5e7eb; border-radius: 10px; overflow: hidden; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);}
+.s-p-fill { height: 100%; width: 0; background: var(--brand); transition: width 0.5s ease; border-radius: 10px; }
+#p-label { font-size: 0.65rem; color: var(--text-muted); font-weight: 700; margin-top: 5px; display: block; }
+
+.s-nav { margin-top: 40px; display: flex; flex-direction: column; gap: 25px; }
+.s-item { display: flex; align-items: center; gap: 15px; opacity: 0.4; transition: all 0.3s; cursor: pointer; }
+.s-item:hover { opacity: 1; transform: translateX(5px); }
+.s-item.active { opacity: 1; transform: translateX(5px); }
+.s-dot { width: 12px; height: 12px; border: 2px solid var(--primary); border-radius: 50%; background: #fff; transition: all 0.3s; }
+.s-item.active .s-dot { background: var(--primary); }
+.s-text strong { display: block; font-size: 0.85rem; }
+.s-text span { font-size: 0.7rem; color: var(--text-muted); }
+
+/* STAGE PANES */
+.aura-stage { padding: 60px 80px; overflow-y: auto; }
+.pane { display: none; opacity: 0; transform: translateX(20px); transition: all 0.4s ease; }
+.pane.active { display: block; opacity: 1; transform: translateX(0); }
+
+.p-intro h1 { font-size: 2.5rem; margin-bottom: 10px; letter-spacing: -1px; }
+.p-intro h1 span { color: var(--brand); }
+.p-intro p { color: var(--text-muted); margin-bottom: 40px; }
+
+/* FORM GROUP & FLOATING LABELS */
+.f-group { position: relative; margin-bottom: 25px; }
+.f-group label { position: absolute; top: 50%; left: 15px; transform: translateY(-50%); font-size: 0.85rem; font-weight: 700; color: var(--text-muted); pointer-events: none; transition: 0.3s; background: var(--bg); padding: 0 5px; }
+.f-group input:focus + label, .f-group input:not(:placeholder-shown) + label { top: -10px; left: 10px; font-size: 0.7rem; color: var(--brand); }
+
+/* INPUTS */
+input { width: 100%; height: 50px; padding: 0 15px; border: 2px solid var(--border); border-radius: var(--radius-md); font-size: 1rem; background: var(--bg); transition: all 0.3s; }
+input:focus { border-color: var(--brand); outline: none; box-shadow: 0 4px 12px rgba(99,102,241,0.3); }
+
+/* BUTTONS */
+.btn-continue, .btn-launch { width: 100%; height: 55px; background: var(--primary); color: #fff; border-radius: var(--radius-md); font-weight: 800; font-size: 1rem; margin-top: 30px; transition: all 0.3s; box-shadow: 0 6px 15px rgba(0,0,0,0.2); cursor: pointer; }
+.btn-continue:hover, .btn-launch:hover { background: var(--brand); transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+
+/* LAUNCH ORB */
+.l-orb { width: 80px; height: 80px; background: var(--brand); border-radius: 50%; margin: 0 auto 30px; box-shadow: 0 0 50px rgba(99,102,241,0.5), 0 10px 30px rgba(0,0,0,0.2); }
+
+/* TOUR OVERLAY */
+.tour-dim { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 10000; display: none; }
+.spotlight { position: absolute; border-radius: 12px; box-shadow: 0 0 0 9999px rgba(0,0,0,0.7); pointer-events: none; transition: all 0.4s ease; }
+.guide-tooltip { position: absolute; width: 320px; background: #fff; padding: 25px; border-radius: 15px; z-index: 10001; transition: all 0.4s ease; box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) { 
+    .aura-content { grid-template-columns: 220px 1fr; }
+    .aura-stage { padding: 40px 40px; }
+}
+@media (max-width: 768px) { 
+    .aura-shell { height: 90vh; width: 95%; }
+    .aura-content { grid-template-columns: 1fr; }
+    .aura-sidebar { display: flex; flex-direction: row; gap: 20px; overflow-x: auto; padding: 20px; }
+    .aura-stage { padding: 30px 20px; }
+}
