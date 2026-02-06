@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up • Instagram</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-left">Instagram Clone</div>
+        <div class="nav-right">
+            <a href="index.html">Login</a>
+            <a href="profile.html" class="active">Profile</a>
+            <a href="team.html">Our Team</a>
+        </div>
+    </nav>
+
+    <!-- SIGNUP -->
+    <div class="container">
+        <div class="login-box">
+
+            <img src="assets/images/logo.png" alt="Instagram Logo">
+
+            <p style="font-size:14px; color:#8e8e8e; margin-bottom:20px;">
+                Sign up to see photos and videos from your friends.
+            </p>
+
+            <!-- Facebook signup -->
+            <a href="#" class="facebook-login">Sign up with Facebook</a>
+
+            <!-- OR -->
+            <div class="or-divider">
+                <span></span>
+                <p>OR</p>
+                <span></span>
+            </div>
+
+            <!-- Signup form -->
+            <input type="email"
+                   placeholder="Email address"
+                   required>
+
+            <input type="text"
+                   placeholder="Username"
+                   pattern="[a-zA-Z0-9_.]{5,}"
+                   title="Minimum 5 characters. Letters, numbers, _ or ."
+                   required>
+
+            <input type="password"
+                   placeholder="Password"
+                   minlength="8"
+                   required>
+
+            <button class="login-btn">Sign Up</button>
+
+            <p style="font-size:12px; color:#8e8e8e; margin-top:15px;">
+                By signing up, you agree to our Terms, Privacy Policy and Cookies Policy.
+            </p>
+
+        </div>
+
+        <div class="signup-box">
+            <p>Have an account? <a href="index.html">Log in</a></p>
+        </div>
+    </div>
+
+</body>
+</html>
