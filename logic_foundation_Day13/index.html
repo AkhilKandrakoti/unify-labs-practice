@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Logic Foundation | Internship Project</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="fade-in">
+
+  <header class="slide-down">
+    <h1>Logic Foundation</h1>
+    <p>Magic 8-Ball & Calculator Utilities</p>
+  </header>
+
+  <main>
+    <!-- Welcome -->
+    <section class="card slide-up">
+      <h2>Welcome</h2>
+      <p id="welcomeMessage"></p>
+    </section>
+
+    <!-- Calculator -->
+    <section class="card slide-up delay-1">
+      <h2>Calculator Utility</h2>
+
+      <input type="number" id="num1" placeholder="Enter first number" />
+      <input type="number" id="num2" placeholder="Enter second number" />
+
+      <button id="calcBtn">Calculate</button>
+
+      <div class="output" id="calcResult"></div>
+    </section>
+
+    <!-- Magic 8-Ball -->
+    <section class="card slide-up delay-2">
+      <h2>Magic 8-Ball</h2>
+      <button id="magicBtn">Ask the Magic 8-Ball</button>
+      <p class="prediction" id="predictionText"></p>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 Internship Logic Foundation
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
