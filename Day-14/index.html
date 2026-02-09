@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Mastery Playground</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>JavaScript Mastery Playground</h1>
+        <p>Interactive demos for Logical Operators, Loops, Conditionals & More!</p>
+    </header>
+
+    <main>
+        <!-- Logical Operators -->
+        <section class="card" id="logicalOperators">
+            <h2>Logical Operators (&&, ||, !)</h2>
+            <input type="number" id="num1" placeholder="Enter first number">
+            <input type="number" id="num2" placeholder="Enter second number">
+            <button onclick="checkLogicalOperators()">Check</button>
+            <p id="logicalResult"></p>
+        </section>
+
+        <!-- If Statement -->
+        <section class="card" id="ifStatement">
+            <h2>If Statement</h2>
+            <input type="number" id="age" placeholder="Enter your age">
+            <button onclick="checkIfStatement()">Submit</button>
+            <p id="ifResult"></p>
+        </section>
+
+        <!-- Switch Statement -->
+        <section class="card" id="switchStatement">
+            <h2>Switch Statement</h2>
+            <input type="text" id="day" placeholder="Enter a day (e.g., Monday)">
+            <button onclick="checkSwitchStatement()">Check</button>
+            <p id="switchResult"></p>
+        </section>
+
+        <!-- Ternary Operator -->
+        <section class="card" id="ternaryOperator">
+            <h2>Ternary Operator</h2>
+            <input type="number" id="score" placeholder="Enter your score">
+            <button onclick="checkTernary()">Check</button>
+            <p id="ternaryResult"></p>
+        </section>
+
+        <!-- Prompt & Alert -->
+        <section class="card" id="promptAlert">
+            <h2>Prompt & Alert</h2>
+            <button onclick="promptAlertDemo()">Click Me!</button>
+        </section>
+
+        <!-- For Loop -->
+        <section class="card" id="forLoop">
+            <h2>For Loop</h2>
+            <button onclick="demoForLoop()">Show Numbers 1 to 10</button>
+            <p id="forLoopResult"></p>
+        </section>
+
+        <!-- While & Do-While -->
+        <section class="card" id="whileLoop">
+            <h2>While & Do-While Loop</h2>
+            <button onclick="demoWhileLoop()">Show Numbers 1 to 5</button>
+            <p id="whileResult"></p>
+        </section>
+
+        <!-- Nested Loops -->
+        <section class="card" id="nestedLoops">
+            <h2>Nested Loops</h2>
+            <button onclick="demoNestedLoops()">Show Multiplication Table</button>
+            <pre id="nestedResult"></pre>
+        </section>
+
+        <!-- String to Number -->
+        <section class="card" id="stringToNumber">
+            <h2>String to Number Conversion</h2>
+            <input type="text" id="stringInput" placeholder="Enter a number as string">
+            <button onclick="convertStringToNumber()">Convert</button>
+            <p id="conversionResult"></p>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

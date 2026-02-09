@@ -1,0 +1,161 @@
+/* Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Body - Animated Gradient Background */
+body {
+    background: linear-gradient(-45deg, #1e3c72, #2a5298, #0f2027, #203a43);
+    background-size: 400% 400%;
+    animation: gradientBG 20s ease infinite;
+    min-height: 100vh;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Header */
+header {
+    text-align: center;
+    padding: 3rem 1rem;
+    text-shadow: 0 0 10px rgba(255,255,255,0.7), 0 0 20px rgba(0,255,255,0.5);
+}
+
+header h1 {
+    font-size: 3rem;
+    background: linear-gradient(90deg, #00ffe7, #ff00ff, #00ffea);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glowText 2s infinite alternate;
+}
+
+header p {
+    font-size: 1.2rem;
+    color: #00ffe7;
+    opacity: 0.8;
+}
+
+@keyframes glowText {
+    0% { text-shadow: 0 0 5px #00ffe7, 0 0 10px #ff00ff; }
+    50% { text-shadow: 0 0 20px #00ffe7, 0 0 30px #ff00ff; }
+    100% { text-shadow: 0 0 5px #00ffe7, 0 0 10px #ff00ff; }
+}
+
+/* Main - Grid */
+main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+}
+
+/* Glassmorphism Cards */
+.card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, #ff6ec4, #7873f5, #4ef9ff);
+    opacity: 0.2;
+    transform: rotate(25deg);
+    pointer-events: none;
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+/* Card Titles */
+.card h2 {
+    margin-bottom: 1.2rem;
+    color: #00ffe7;
+    font-size: 1.5rem;
+    text-shadow: 0 0 10px #00ffe7;
+}
+
+/* Inputs */
+.card input {
+    padding: 0.7rem 1rem;
+    margin: 0.5rem 0;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.card input:focus {
+    border-color: #00ffe7;
+    box-shadow: 0 0 10px #00ffe7;
+    outline: none;
+}
+
+/* Buttons - Neon Glow */
+.card button {
+    background: linear-gradient(45deg, #ff00ff, #00ffe7);
+    color: #fff;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.4s ease;
+    box-shadow: 0 0 5px #00ffe7, 0 0 10px #ff00ff;
+}
+
+.card button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px #00ffe7, 0 0 30px #ff00ff, 0 0 40px #ffffff;
+}
+
+/* Outputs */
+.card p, .card pre {
+    margin-top: 1rem;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 5px rgba(0,255,255,0.7);
+}
+
+/* Special effects for nested loops pre */
+#nestedResult {
+    white-space: pre-wrap;
+    color: #ff6ec4;
+    text-shadow: 0 0 8px #ff6ec4, 0 0 15px #7873f5;
+}
+
+/* Animations for floating cards */
+@keyframes floatCard {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.card {
+    animation: floatCard 6s ease-in-out infinite;
+}
