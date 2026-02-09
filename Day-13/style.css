@@ -1,0 +1,120 @@
+:root {
+  --primary: #6c63ff;
+  --dark: #0f0f1a;
+  --light: #f4f6ff;
+  --glass: rgba(255, 255, 255, 0.12);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #0f0f1a, #1c1c3a);
+  color: var(--light);
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 8%;
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(10px);
+}
+
+.logo span {
+  color: var(--primary);
+}
+
+.navbar a {
+  color: var(--light);
+  margin-left: 20px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* HERO */
+.hero {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.hero h2 {
+  font-size: 3rem;
+}
+
+.hero p {
+  margin: 20px 0;
+  max-width: 600px;
+}
+
+.hero button {
+  padding: 14px 30px;
+  border: none;
+  background: var(--primary);
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 30px;
+}
+
+/* SECTIONS */
+.section {
+  padding: 80px 8%;
+  text-align: center;
+}
+
+.glass {
+  background: var(--glass);
+  backdrop-filter: blur(14px);
+  border-radius: 20px;
+  margin: 40px 8%;
+}
+
+.dark {
+  background: #11112b;
+}
+
+/* CARDS */
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.card {
+  background: #1b1b3a;
+  padding: 30px;
+  width: 220px;
+  border-radius: 16px;
+}
+
+/* STATS */
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  font-size: 1.3rem;
+}
+
+.stats span {
+  font-size: 2.5rem;
+  color: var(--primary);
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 30px;
+  background: #0b0b18;
+}
