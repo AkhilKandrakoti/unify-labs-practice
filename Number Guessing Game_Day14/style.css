@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap');
+
+/* 1. Hyper-Modern Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Outfit', sans-serif;
+}
+
+/* 2. Living Mesh Background */
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at 0% 0%, #ff00cc 0%, transparent 50%),
+                radial-gradient(circle at 100% 0%, #3333ff 0%, transparent 50%),
+                radial-gradient(circle at 100% 100%, #00ffff 0%, transparent 50%),
+                radial-gradient(circle at 0% 100%, #ffcc00 0%, transparent 50%),
+                #0a0a0a;
+    background-size: 200% 200%;
+    animation: meshGradient 15s ease infinite alternate;
+    overflow: hidden;
+}
+
+@keyframes meshGradient {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+}
+
+/* 3. The Floating Glass Sanctuary */
+.game-container {
+    position: relative;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(25px) saturate(200%);
+    -webkit-backdrop-filter: blur(25px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 40px;
+    padding: 50px;
+    width: 95%;
+    max-width: 480px;
+    text-align: center;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5),
+                inset 0 0 20px rgba(255, 255, 255, 0.05);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.game-container:hover {
+    transform: perspective(1000px) rotateX(2deg) rotateY(-1deg) translateY(-10px);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* 4. Cyber-Liquid Typography */
+h1 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 10px;
+    letter-spacing: -2px;
+    background: linear-gradient(to right, #fff, #888);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 5px 15px rgba(255,255,255,0.2));
+}
+
+.instructions {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* 5. The "Neon Glow" Input */
+.input-section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+input[type="number"] {
+    background: rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 20px;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    transition: all 0.4s ease;
+    box-shadow: inset 0 5px 10px rgba(0,0,0,0.5);
+}
+
+input[type="number"]:focus {
+    outline: none;
+    border-color: #00ffff;
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.4),
+                inset 0 0 10px rgba(0, 255, 255, 0.2);
+}
+
+/* 6. The "Hyper-Drive" Button */
+button {
+    background: #fff;
+    color: #000;
+    padding: 18px;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+button:hover {
+    background: #00ffff;
+    box-shadow: 0 0 50px rgba(0, 255, 255, 0.6);
+    transform: translateY(-3px);
+}
+
+button:active { transform: scale(0.95); }
+
+/* 7. Feedback & Dynamic States */
+.feedback {
+    margin-top: 25px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    min-height: 40px;
+    text-shadow: 0 0 15px currentColor;
+    /* Color will be handled by JS for win/lose states */
+}
+
+.attempts {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 1px;
+}
+
+/* 8. Extra Flare: Floating Orbs */
+.game-container::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 120px;
+    height: 120px;
+    background: #ff00cc;
+    filter: blur(60px);
+    z-index: -1;
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-20px, 30px); }
+}
+
+.hidden { display: none; }
