@@ -1,0 +1,122 @@
+:root {
+  --bg: #050607;
+  --neon: #00f2ff;
+  --danger: #ff0033;
+  --glass: rgba(255, 255, 255, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "JetBrains Mono", monospace;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--neon);
+  overflow: hidden;
+}
+
+/* Scanlines */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.03),
+    rgba(255,255,255,0.03) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+}
+
+/* BOOT SCREEN */
+#boot-screen {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  z-index: 999;
+}
+
+.boot-title {
+  font-size: 22px;
+  letter-spacing: 4px;
+  text-shadow: 0 0 15px var(--neon);
+}
+
+.boot-bar {
+  width: 320px;
+  height: 14px;
+  border: 1px solid var(--neon);
+  padding: 2px;
+}
+
+.boot-progress {
+  height: 100%;
+  width: 0%;
+  background: var(--neon);
+  box-shadow: 0 0 12px var(--neon);
+}
+
+.boot-status {
+  font-size: 13px;
+  opacity: 0.75;
+}
+
+/* TERMINAL */
+#terminal {
+  width: 740px;
+  height: 500px;
+  background: var(--glass);
+  backdrop-filter: blur(18px);
+  border: 2px solid var(--neon);
+  box-shadow: 0 0 30px var(--neon);
+  display: none;
+  flex-direction: column;
+}
+
+#header {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid var(--neon);
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+#log {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
+  font-size: 14px;
+}
+
+#input {
+  border: none;
+  border-top: 1px solid var(--neon);
+  background: transparent;
+  color: var(--neon);
+  padding: 10px;
+  font-size: 15px;
+  outline: none;
+  caret-color: var(--neon);
+}
+
+.system {
+  opacity: 0.9;
+}
+
+.red-alert {
+  color: var(--danger);
+  text-shadow: 0 0 15px var(--danger);
+}
