@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Text Formatter</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>📝 Smart Text Formatter</h1>
+
+    <!-- Input Section -->
+    <div class="input-section glass">
+      <textarea id="userInput" placeholder="Enter your text here..."></textarea>
+      <input type="text" id="forbiddenWords" placeholder="Forbidden words (comma-separated)">
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="buttons">
+      <button onclick="formatText()">✨ Format & Analyze</button>
+      <button onclick="resetText()">🗑️ Reset</button>
+    </div>
+
+    <!-- Output Section -->
+    <div class="output">
+      <h2>Results</h2>
+
+      <div class="card glass">
+        <h3>Title Case</h3>
+        <p id="titleCase"></p>
+      </div>
+
+      <div class="card glass">
+        <h3>Vowel Count</h3>
+        <p id="vowelCount"></p>
+      </div>
+
+      <div class="card glass">
+        <h3>Secret Message</h3>
+        <p id="secretMessage"></p>
+      </div>
+
+      <div class="card glass">
+        <h3>Text Statistics</h3>
+        <ul>
+          <li>Word Count: <span id="wordCount"></span></li>
+          <li>Character Count (no spaces): <span id="charCount"></span></li>
+          <li>Average Word Length: <span id="avgWordLength"></span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
