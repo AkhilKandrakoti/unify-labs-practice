@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Pet Simulator - Pro Edition</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="stars"></div>
+<div class="light-sweep"></div>
+<div class="game">
+
+    <header>
+        <h1>🐾 Digital Pet Simulator</h1>
+    </header>
+
+    <div class="pet-area">
+        <div id="petCharacter" class="pet idle">🐶</div>
+        <div id="petMood" class="mood">Mood: Happy</div>
+        <div class="level" id="levelDisplay">Level: 1 | XP: 0</div>
+    </div>
+
+    <div class="stats">
+        <div class="stat">
+            <span>Health</span>
+            <div class="bar"><div id="healthBar"></div></div>
+        </div>
+
+        <div class="stat">
+            <span>Hunger</span>
+            <div class="bar"><div id="hungerBar"></div></div>
+        </div>
+
+        <div class="stat">
+            <span>Energy</span>
+            <div class="bar"><div id="energyBar"></div></div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button onclick="feedPet()">🍖 Feed</button>
+        <button onclick="playPet()">🎾 Play</button>
+        <button onclick="restPet()">😴 Rest</button>
+    </div>
+
+    <pre id="statusOutput"></pre>
+
+    <div class="create">
+        <input id="nameInput" placeholder="Pet Name">
+        <select id="typeInput">
+            <option value="🐶">Dog</option>
+            <option value="🐱">Cat</option>
+            <option value="🐰">Rabbit</option>
+            <option value="🐼">Panda</option>
+        </select>
+        <button onclick="createPet()">Start Game</button>
+    </div>
+
+    <!-- GAME OVER SCREEN -->
+    <div id="gameOverScreen" class="game-over">
+        <h2>💀 Game Over</h2>
+        <button onclick="restartGame()">Restart Game</button>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

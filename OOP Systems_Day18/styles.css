@@ -1,0 +1,397 @@
+/* =========================
+   AAA DIGITAL PET UI
+   ========================= */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+/* ===============================
+   CINEMATIC BACKGROUND ENGINE
+   =============================== */
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+color:white;
+position:relative;
+
+/* Deep cosmic gradient */
+background:linear-gradient(
+-45deg,
+#0f2027,
+#203a43,
+#2c5364,
+#1c1c3c,
+#16213e,
+#0f3460,
+#1a1a2e
+);
+background-size:600% 600%;
+animation:deepSpace 22s ease infinite;
+}
+@keyframes gradientFlow{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.game{
+width:540px;
+padding:35px;
+background:rgba(255,255,255,0.06);
+backdrop-filter:blur(30px);
+border-radius:28px;
+box-shadow:
+0 40px 80px rgba(0,0,0,0.8),
+inset 0 0 30px rgba(255,255,255,0.05);
+text-align:center;
+position:relative;
+transition:0.5s ease;
+}
+
+.game:hover{
+transform:translateY(-5px);
+}
+
+/* HEADER */
+header h1{
+font-size:28px;
+letter-spacing:2px;
+background:linear-gradient(90deg,#ff758c,#ff7eb3,#00f2fe);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:glowText 3s ease-in-out infinite alternate;
+}
+
+@keyframes glowText{
+from{filter:drop-shadow(0 0 5px #ff7eb3);}
+to{filter:drop-shadow(0 0 20px #00f2fe);}
+}
+
+/* PET */
+.pet{
+font-size:110px;
+margin:20px 0;
+transition:transform 0.4s ease, filter 0.4s ease;
+}
+
+.pet.idle{
+animation:float 4s ease-in-out infinite;
+}
+
+.pet.happy{
+animation:bounce 0.5s ease;
+}
+
+.pet.dead{
+filter:grayscale(100%) brightness(0.5);
+animation:none;
+}
+
+@keyframes float{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-18px);}
+}
+
+@keyframes bounce{
+0%{transform:scale(1);}
+50%{transform:scale(1.35);}
+100%{transform:scale(1);}
+}
+
+/* MOOD */
+.mood{
+font-size:18px;
+font-weight:600;
+margin-bottom:5px;
+transition:0.3s;
+}
+
+.level{
+font-size:14px;
+opacity:0.8;
+margin-bottom:15px;
+}
+
+/* STATS */
+.stat{
+margin-bottom:18px;
+text-align:left;
+}
+
+.stat span{
+font-weight:600;
+letter-spacing:1px;
+}
+
+.bar{
+width:100%;
+height:20px;
+background:rgba(255,255,255,0.08);
+border-radius:20px;
+overflow:hidden;
+margin-top:6px;
+box-shadow:inset 0 0 10px rgba(0,0,0,0.5);
+}
+
+.bar div{
+height:100%;
+transition:width 0.6s cubic-bezier(.4,2,.6,1);
+box-shadow:0 0 15px rgba(255,255,255,0.7);
+}
+
+#healthBar{
+background:linear-gradient(90deg,#00ff88,#00c851);
+}
+
+#hungerBar{
+background:linear-gradient(90deg,#ffbb33,#ff8800);
+}
+
+#energyBar{
+background:linear-gradient(90deg,#33b5e5,#0099cc);
+}
+
+/* CONTROLS */
+.controls{
+display:flex;
+justify-content:center;
+gap:25px;
+margin-top:25px;
+}
+
+button{
+padding:14px 24px;
+border-radius:16px;
+border:none;
+cursor:pointer;
+font-weight:600;
+font-size:15px;
+background:linear-gradient(135deg,#ff758c,#ff7eb3);
+color:white;
+transition:all 0.3s ease;
+box-shadow:
+0 10px 20px rgba(255,118,136,0.4),
+inset 0 -4px 10px rgba(0,0,0,0.3);
+}
+
+button:hover{
+transform:translateY(-6px) scale(1.05);
+box-shadow:
+0 20px 40px rgba(203, 199, 200, 0.7),
+inset 0 -4px 15px rgba(0,0,0,0.4);
+}
+
+button:active{
+transform:translateY(2px);
+box-shadow:
+0 5px 10px rgba(0,0,0,0.5);
+}
+
+/* CREATE SECTION */
+.create{
+margin-top:25px;
+display:flex;
+gap:12px;
+}
+
+input,select{
+flex:1;
+padding:10px;
+border-radius:10px;
+border:none;
+outline:none;
+background:rgba(12, 0, 0, 0.1);
+color:rgb(168, 219, 243);
+transition:0.3s;
+}
+
+input:focus,select:focus{
+background:rgba(10, 0, 0, 0.2);
+box-shadow:0 0 10px #00f2fe;
+}
+
+/* STATUS BOX */
+pre{
+margin-top:20px;
+background:rgba(0,0,0,0.3);
+padding:12px;
+border-radius:12px;
+font-size:13px;
+text-align:left;
+}
+
+/* GAME OVER */
+.game-over{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.95);
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+border-radius:28px;
+visibility:hidden;
+opacity:0;
+transition:0.5s ease;
+}
+
+.game-over.active{
+visibility:visible;
+opacity:1;
+}
+
+.game-over h2{
+font-size:32px;
+margin-bottom:25px;
+color:#ff4d6d;
+animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+0%{transform:scale(1);}
+50%{transform:scale(1.1);}
+100%{transform:scale(1);}
+}
+
+@keyframes deepGradient{
+0%{background-position:0% 50%;}
+25%{background-position:50% 100%;}
+50%{background-position:100% 50%;}
+75%{background-position:50% 0%;}
+100%{background-position:0% 50%;}
+}
+
+/* Floating Glow Orbs */
+body::before,
+body::after{
+content:"";
+position:absolute;
+width:500px;
+height:500px;
+border-radius:50%;
+filter:blur(120px);
+opacity:0.5;
+animation:orbFloat 20s infinite alternate ease-in-out;
+z-index:0;
+}
+
+body::before{
+background:#ff00cc;
+top:-100px;
+left:-150px;
+}
+
+body::after{
+background:#00f2fe;
+bottom:-150px;
+right:-150px;
+animation-delay:5s;
+}
+
+@keyframes orbFloat{
+0%{transform:translate(0,0) scale(1);}
+50%{transform:translate(80px,50px) scale(1.2);}
+100%{transform:translate(-60px,-40px) scale(1);}
+}
+.game{
+position:relative;
+z-index:2;
+}
+
+@keyframes deepSpace{
+0%{background-position:0% 50%;}
+25%{background-position:50% 100%;}
+50%{background-position:100% 50%;}
+75%{background-position:50% 0%;}
+100%{background-position:0% 50%;}
+}
+body::before,
+body::after{
+content:"";
+position:absolute;
+width:600px;
+height:600px;
+border-radius:50%;
+filter:blur(140px);
+opacity:0.45;
+animation:orbDrift 25s infinite alternate ease-in-out;
+z-index:0;
+}
+
+body::before{
+background:#ff00cc;
+top:-150px;
+left:-200px;
+}
+
+body::after{
+background:#00f2fe;
+bottom:-200px;
+right:-200px;
+animation-delay:6s;
+}
+
+@keyframes orbDrift{
+0%{transform:translate(0,0) scale(1);}
+50%{transform:translate(100px,60px) scale(1.25);}
+100%{transform:translate(-80px,-50px) scale(1);}
+}
+
+body .stars{
+position:absolute;
+width:100%;
+height:100%;
+top:0;
+left:0;
+background:
+radial-gradient(2px 2px at 20% 30%, white, transparent),
+radial-gradient(1.5px 1.5px at 70% 40%, white, transparent),
+radial-gradient(2px 2px at 40% 80%, white, transparent),
+radial-gradient(1px 1px at 85% 60%, white, transparent),
+radial-gradient(2px 2px at 60% 20%, white, transparent);
+animation:twinkle 4s infinite alternate;
+opacity:0.6;
+z-index:0;
+pointer-events:none;
+}
+
+@keyframes twinkle{
+from{opacity:0.4;}
+to{opacity:0.8;}
+}
+
+body .light-sweep{
+position:absolute;
+width:200%;
+height:200%;
+top:-50%;
+left:-50%;
+background:linear-gradient(
+120deg,
+transparent 40%,
+rgba(255,255,255,0.05) 50%,
+transparent 60%
+);
+animation:sweepMove 8s linear infinite;
+z-index:0;
+pointer-events:none;
+}
+
+@keyframes sweepMove{
+0%{transform:rotate(0deg);}
+100%{transform:rotate(360deg);}
+}
+.game{
+position:relative;
+z-index:5;
+}
