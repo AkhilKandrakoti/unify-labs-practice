@@ -1,0 +1,141 @@
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(135deg,#667eea,#764ba2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: white;
+  transition: 0.4s;
+}
+
+body.dark {
+  background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+}
+
+.container {
+  width: 750px;
+  padding: 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  background: rgba(255,255,255,0.1);
+  box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+}
+
+h1 {
+  text-align: center;
+}
+
+.task-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+input, select {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+}
+
+#taskInput {
+  flex: 1;
+}
+
+button {
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#addBtn {
+  background: linear-gradient(45deg,#00c6ff,#0072ff);
+  color: white;
+}
+
+#themeToggle {
+  background: #333;
+  color: white;
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.filter-btn {
+  flex: 1;
+  background: rgba(255,255,255,0.2);
+  color: white;
+}
+
+.filter-btn.active {
+  background: linear-gradient(45deg,#00ff87,#60efff);
+  color: black;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+li {
+  background: rgba(255,255,255,0.15);
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.3s;
+}
+
+li.completed {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.priority-High { border-left: 6px solid red; }
+.priority-Medium { border-left: 6px solid orange; }
+.priority-Low { border-left: 6px solid green; }
+
+.overdue {
+  background: rgba(255,0,0,0.4);
+}
+
+.progress-container {
+  background: rgba(255,255,255,0.2);
+  height: 25px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(45deg,#00ff87,#60efff);
+  border-radius: 20px;
+  transition: width 0.4s ease;
+}
+
+#progressText {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 2px;
+  font-size: 0.9rem;
+}
+
+.delete-btn {
+  background: crimson;
+  color: white;
+  padding: 5px 10px;
+}

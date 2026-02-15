@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Productivity Command Center</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+  <h1>🚀 Productivity Command Center</h1>
+
+  <!-- Progress -->
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+    <span id="progressText">0% Completed</span>
+  </div>
+
+  <!-- Input Section -->
+  <div class="task-form">
+    <input type="text" id="taskInput" placeholder="Enter task..." />
+
+    <select id="category">
+      <option value="Work">Work</option>
+      <option value="Study">Study</option>
+      <option value="Fitness">Fitness</option>
+      <option value="Personal">Personal</option>
+    </select>
+
+    <select id="priority">
+      <option value="High">High</option>
+      <option value="Medium">Medium</option>
+      <option value="Low">Low</option>
+    </select>
+
+    <input type="date" id="dueDate" />
+
+    <button id="addBtn">Add</button>
+    <button id="themeToggle">🌙</button>
+  </div>
+
+  <!-- Filters -->
+  <div class="filters">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="completed">Completed</button>
+    <button class="filter-btn" data-filter="pending">Pending</button>
+  </div>
+
+  <ul id="taskList"></ul>
+
+  <button id="clearCompleted">Clear Completed</button>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
