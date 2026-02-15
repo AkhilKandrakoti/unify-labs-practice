@@ -1,0 +1,369 @@
+/* ===============================
+   ROOT VARIABLES
+================================= */
+:root {
+    --primary: #7f5af0;
+    --secondary: #2cb67d;
+    --danger: #ff4d6d;
+    --glass: rgba(255, 255, 255, 0.08);
+    --glass-strong: rgba(255, 255, 255, 0.15);
+    --border: rgba(255, 255, 255, 0.18);
+    --blur: blur(25px);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", system-ui, sans-serif;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===============================
+   LEGENDARY ANIMATED BACKGROUND
+================================= */
+/* ===============================
+   LIGHT MODE (DEFAULT)
+================================= */
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: linear-gradient(-45deg, #597093, #2aa8ce, #39568a, #145da5);
+    background-size: 400% 400%;
+    animation: gradientMove 18s ease infinite;
+    color: #1a1a1a;
+}
+
+/* Light glass */
+.container {
+    background: rgba(255, 255, 255, 0.65);
+    color: #1a1a1a;
+}
+
+/* Input Light Mode */
+#taskInput {
+    background: rgba(255,255,255,0.8);
+    color: #111;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+#taskInput::placeholder {
+    color: rgba(0,0,0,0.5);
+}
+
+/* Task Item Light */
+/* ===============================
+   LIGHT MODE TASK ITEMS (FIXED)
+================================= */
+li {
+    background: #ffffff;
+    color: #1a1a1a;
+    border: 1px solid rgba(0,0,0,0.08);
+    box-shadow:
+        0 6px 18px rgba(0,0,0,0.08),
+        0 2px 6px rgba(0,0,0,0.04);
+}
+
+/* Hover effect for Light Mode */
+li:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 12px 25px rgba(0,0,0,0.12),
+        0 4px 10px rgba(0,0,0,0.08);
+}
+
+/* Completed in Light Mode */
+.completed {
+    background: #e6f9f0;
+    border: 1px solid #b7f0d1;
+    color: #2d6a4f;
+}
+/* Filter buttons Light */
+.filter-btn {
+    background: rgba(255,255,255,0.7);
+    color: #111;
+}
+
+/* ===============================
+   DARK MODE
+================================= */
+body.dark {
+    background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #000000);
+    color: #ffffff;
+}
+
+body.dark .container {
+    background: rgba(20, 20, 20, 0.55);
+    color: #ffffff;
+}
+
+body.dark #taskInput {
+    background: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+body.dark #taskInput::placeholder {
+    color: rgba(255,255,255,0.6);
+}
+
+body.dark li {
+    background: rgba(255,255,255,0.08);
+    color: #ffffff;
+}
+
+body.dark .filter-btn {
+    background: rgba(255,255,255,0.08);
+    color: #ffffff;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Floating animated particles */
+body::before {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    animation: floatParticles 60s linear infinite;
+}
+
+@keyframes floatParticles {
+    from { transform: translateY(0); }
+    to { transform: translateY(-200px); }
+}
+
+/* ===============================
+   GLASS CONTAINER (3D DEPTH)
+================================= */
+.container {
+    width: 500px;
+    padding: 35px;
+    border-radius: 25px;
+    backdrop-filter: var(--blur);
+    background: var(--glass);
+    border: 1px solid var(--border);
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.6),
+        inset 0 0 40px rgba(255,255,255,0.05);
+    position: relative;
+    z-index: 10;
+}
+
+/* Animated glowing border */
+.container::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 27px;
+    background: linear-gradient(45deg, #7f5af0, #2cb67d, #ff8906, #7f5af0);
+    background-size: 400% 400%;
+    animation: borderFlow 10s linear infinite;
+    filter: blur(25px);
+    z-index: -1;
+    opacity: 0.6;
+}
+
+@keyframes borderFlow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 400% 50%; }
+}
+
+/* ===============================
+   TITLE
+================================= */
+h1 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    background: linear-gradient(90deg, #fff, #7f5af0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ===============================
+   INPUT + BUTTONS
+================================= */
+.top-controls {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+#taskInput {
+    flex: 1;
+    padding: 14px 16px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.25);
+    background: rgba(0, 0, 0, 0.35); /* darker glass */
+    color: #ffffff; /* strong white text */
+    font-weight: 500;
+    font-size: 0.95rem;
+    outline: none;
+    backdrop-filter: blur(12px);
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.4);
+}
+
+/* Placeholder styling */
+#taskInput::placeholder {
+    color: rgba(255,255,255,0.6);
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+/* Focus state */
+#taskInput:focus {
+    border-color: #7f5af0;
+    background: rgba(0, 0, 0, 0.55);
+    box-shadow:
+        0 0 20px rgba(127, 90, 240, 0.7),
+        inset 0 0 12px rgba(0,0,0,0.6);
+    transform: scale(1.02);
+}
+
+#taskInput:focus {
+    box-shadow: 0 0 20px rgba(127, 90, 240, 0.6);
+    transform: scale(1.02);
+}
+
+#addBtn, #themeToggle {
+    padding: 14px 18px;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, #7f5af0, #2cb67d);
+    background-size: 200% 200%;
+    animation: buttonFlow 5s ease infinite;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+@keyframes buttonFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+#addBtn:hover, #themeToggle:hover {
+    transform: translateY(-3px) scale(1.05);
+}
+
+/* ===============================
+   FILTER BUTTONS
+================================= */
+.filters {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.filter-btn {
+    flex: 1;
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--glass);
+    color: white;
+    cursor: pointer;
+}
+
+.filter-btn.active {
+    background: linear-gradient(135deg, #7f5af0, #2cb67d);
+    box-shadow: 0 0 20px rgba(127, 90, 240, 0.7);
+}
+
+/* ===============================
+   TASK LIST
+================================= */
+ul {
+    list-style: none;
+    max-height: 270px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+/* Premium scrollbar */
+ul::-webkit-scrollbar {
+    width: 6px;
+}
+
+ul::-webkit-scrollbar-thumb {
+    background: linear-gradient(#7f5af0, #2cb67d);
+    border-radius: 10px;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    border-radius: 15px;
+    background: var(--glass);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(15px);
+    animation: taskEnter 0.4s ease forwards;
+}
+
+@keyframes taskEnter {
+    from { opacity: 0; transform: translateY(-15px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+li:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+/* Completion pulse glow */
+.completed {
+    text-decoration: line-through;
+    background: rgba(44,182,125,0.2);
+    box-shadow: 0 0 15px rgba(44,182,125,0.6);
+    animation: completedPulse 1.2s ease;
+}
+
+@keyframes completedPulse {
+    0% { box-shadow: 0 0 0 rgba(44,182,125,0); }
+    50% { box-shadow: 0 0 25px rgba(44,182,125,0.8); }
+    100% { box-shadow: 0 0 15px rgba(44,182,125,0.6); }
+}
+
+/* ===============================
+   DELETE BUTTON
+================================= */
+.delete-btn {
+    background: linear-gradient(135deg, #ff4d6d, #ff758f);
+    border: none;
+    padding: 7px 11px;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    font-size: 0.8rem;
+    box-shadow: 0 5px 20px rgba(255,77,109,0.5);
+}
+
+.delete-btn:hover {
+    transform: scale(1.15) rotate(3deg);
+}
+
+/* ===============================
+   FOOTER
+================================= */
+.footer {
+    margin-top: 18px;
+    text-align: center;
+    font-size: 0.9rem;
+    opacity: 0.85;
+}
