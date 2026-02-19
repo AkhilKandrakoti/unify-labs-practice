@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Real-Time Weather Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ✅ Background Clouds Video -->
+  <div class="bg">
+    <video class="bg-video" autoplay muted loop playsinline preload="auto">
+      <source src="assets/weather.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <!-- overlay for readability -->
+    <div class="bg-overlay"></div>
+  </div>
+
+  <div class="app">
+    <header class="header">
+      <div>
+        <h1>Real-Time Weather Dashboard</h1>
+        <p class="subtitle">Live weather using async/await + fetch + error handling — no page refresh.</p>
+      </div>
+
+      <div class="status">
+        <span class="dot" id="liveDot" aria-hidden="true"></span>
+        <span id="liveText">Ready</span>
+      </div>
+    </header>
+
+    <main class="grid">
+      <!-- Search / Controls -->
+      <section class="card">
+        <h2>Search Location</h2>
+
+        <form id="searchForm" class="search" autocomplete="off">
+          <label class="label" for="cityInput">City</label>
+
+          <div class="row">
+            <input
+              id="cityInput"
+              class="input"
+              type="text"
+              placeholder="e.g., Hyderabad, Mumbai, Bengaluru"
+              minlength="2"
+              required
+            />
+            <button class="btn" type="submit">Search</button>
+          </div>
+
+          <div class="row row-small">
+            <button class="btn btn-ghost" id="btnUseMyLocation" type="button">
+              Use My Location
+            </button>
+
+            <div class="auto">
+              <label class="switch">
+                <input id="autoRefreshToggle" type="checkbox" checked />
+                <span class="slider" aria-hidden="true"></span>
+              </label>
+              <span class="muted">Auto-refresh (60s)</span>
+            </div>
+          </div>
+
+          <p class="helper muted">
+            Tip: Search uses Open-Meteo Geocoding and shows live weather instantly.
+          </p>
+
+
+          
+          
+        </form>
+      </section>
+
+      
+
+      <!-- Results -->
+      <section class="card card-wide">
+  <div class="topline">
+    <div>
+      <h2 id="placeTitle">—</h2>
+      <p class="muted" id="placeMeta">Search a city to view live conditions.</p>
+    </div>
+
+    <button class="btn btn-ghost" id="btnRefresh" type="button">Refresh Now</button>
+  </div>
+
+  <!-- Loading overlay -->
+  <div class="loading-overlay hidden" id="loadingOverlay" role="status" aria-live="polite">
+    <div class="spinner" aria-hidden="true"></div>
+    <div class="loading-text">
+      <p class="loading-title">Loading weather…</p>
+      <p class="muted">Fetching live data from API</p>
+    </div>
+  </div>
+
+  <!-- Error box -->
+  <div class="error hidden" id="errorBox" role="alert">
+    <div class="error-title">Something went wrong</div>
+    <div class="error-message" id="errorText"></div>
+  </div>
+
+  <!-- ✅ MOCK-LIKE PANEL -->
+  <div class="weather hidden" id="weatherPanel">
+    <div class="weather-card">
+      <div class="weather-card-top">
+        <div>
+          <div class="place-mini" id="placeTitleMini">—</div>
+          <div class="place-mini-meta muted" id="placeMetaMini">—</div>
+        </div>
+
+        <div class="weather-illustration">
+          <div class="big-icon" id="weatherIcon" aria-hidden="true">⛅</div>
+        </div>
+      </div>
+
+      <div class="weather-main">
+        <div class="temp">
+          <span id="tempValue">--</span><span class="unit">°C</span>
+        </div>
+
+        <div class="desc" id="weatherDesc">—</div>
+        <div class="muted small" id="updatedAt">Last updated: —</div>
+      </div>
+
+      <div class="stats stats-4">
+        <div class="stat">
+          <div class="stat-label">Humidity</div>
+          <div class="stat-value"><span id="humidityValue">--</span><span class="stat-unit">%</span></div>
+        </div>
+
+        <div class="stat">
+          <div class="stat-label">Wind</div>
+          <div class="stat-value"><span id="windValue">--</span><span class="stat-unit"> km/h</span></div>
+        </div>
+
+        <div class="stat">
+          <div class="stat-label">Feels Like</div>
+          <div class="stat-value"><span id="feelsValue">--</span><span class="stat-unit">°C</span></div>
+        </div>
+
+        <div class="stat">
+          <div class="stat-label">Condition Code</div>
+          <div class="stat-value"><span id="codeValue">--</span></div>
+        </div>
+      </div>
+
+      <div class="footerline">
+        <div class="muted tiny">
+          Data: Open-Meteo (current weather + humidity + apparent temperature)
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+        <!-- Error box -->
+        <div class="error hidden" id="errorBox" role="alert">
+          <div class="error-title">Something went wrong</div>
+          <div class="error-message" id="errorText"></div>
+        </div>
+
+        <!-- Weather Layout -->
+        <div class="weather hidden" id="weatherPanel">
+          <div class="hero">
+            <div class="hero-left">
+              <div class="temp">
+                <span id="tempValue">--</span><span class="unit">°C</span>
+              </div>
+              <div class="desc" id="weatherDesc">—</div>
+              <div class="muted small" id="updatedAt">Last updated: —</div>
+            </div>
+
+            <div class="hero-right">
+              <div class="icon" id="weatherIcon" aria-hidden="true">⛅</div>
+            </div>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <div class="stat-label">Humidity</div>
+              <div class="stat-value"><span id="humidityValue">--</span><span class="stat-unit">%</span></div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Wind</div>
+              <div class="stat-value"><span id="windValue">--</span><span class="stat-unit"> km/h</span></div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Feels Like</div>
+              <div class="stat-value"><span id="feelsValue">--</span><span class="stat-unit">°C</span></div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Condition Code</div>
+              <div class="stat-value"><span id="codeValue">--</span></div>
+            </div>
+          </div>
+
+          <div class="footerline">
+            <div class="muted tiny">
+              Data: Open-Meteo (current weather + humidity + apparent temperature)
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="page-footer">
+      <span class="muted tiny">Day 20 • Async Application • Unify Labs Internship</span>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
