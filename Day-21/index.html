@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Mini Focus Timer — Day 21 Concepts</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <h1>Mini Focus Timer</h1>
+      <p class="sub">Small page, but covers JSON • this/bind/call/apply • strict • storage • cookies • modules</p>
+    </header>
+
+    <section class="card">
+      <div class="row">
+        <label>Minutes</label>
+        <input id="mins" type="number" min="1" max="180" value="25" />
+      </div>
+
+      <div class="row">
+        <label>Goal (optional)</label>
+        <input id="goal" type="text" placeholder="e.g., Finish JS lesson" />
+      </div>
+
+      <div class="btns">
+        <button id="start">Start</button>
+        <button class="ghost" id="saveDraft">Save Draft (session)</button>
+        <button class="ghost" id="loadDraft">Load Draft</button>
+        <button class="ghost" id="export">Export JSON</button>
+        <button class="ghost" id="import">Import JSON</button>
+      </div>
+
+      <div class="timer">
+        <div class="big" id="time">25:00</div>
+        <div class="muted" id="status">Ready.</div>
+      </div>
+
+      <div class="row">
+        <label>State JSON</label>
+        <textarea id="box" rows="5" placeholder="Exported JSON appears here. Paste to import."></textarea>
+      </div>
+
+      <div class="row chips">
+        <button class="chip" data-preset="15">Quick 15</button>
+        <button class="chip" data-preset="25">Quick 25</button>
+        <button class="chip" data-preset="45">Quick 45</button>
+        <button class="chip danger" id="reset">Reset All</button>
+      </div>
+
+      <div class="mini">
+        <span id="pillLocal">Local: —</span>
+        <span id="pillSession">Session: —</span>
+        <span id="pillCookie">Cookie: —</span>
+        <span id="pillModule">Module: —</span>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <small>Tip: Close the tab → session draft disappears. Refresh → local data stays. Theme is stored in cookie.</small>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
