@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <title>Persistent Settings Manager</title>
+    <meta name="description" content="A modular settings manager with persistence using localStorage." />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#app">Skip to content</a>
+
+    <header class="topbar">
+      <div class="container topbar__inner">
+        <div class="brand">
+          <div class="brand__logo" aria-hidden="true">⚙️</div>
+          <div class="brand__text">
+            <div class="brand__title">Settings Manager</div>
+            <div class="brand__subtitle">Persistent preferences with ES Modules</div>
+          </div>
+        </div>
+
+        <div class="topbar__status" aria-live="polite">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span id="statusText">Ready</span>
+        </div>
+      </div>
+    </header>
+
+    <main id="app" class="container">
+      <section class="card">
+        <div class="card__header">
+          <h1 id="title">Persistent Settings Manager</h1>
+          <p id="subtitle" class="muted">
+            Your preferences are saved in your browser and restored when you return.
+          </p>
+        </div>
+
+        <div class="grid">
+          <!-- Theme -->
+          <div class="field">
+            <label class="field__label" for="themeToggle" id="themeLabel">Theme</label>
+            <div class="field__control">
+              <button
+                id="themeToggle"
+                type="button"
+                class="toggle"
+                role="switch"
+                aria-checked="false"
+              >
+                <span class="toggle__track" aria-hidden="true">
+                  <span class="toggle__thumb" aria-hidden="true"></span>
+                </span>
+                <span class="toggle__text" id="themeToggleText">Light</span>
+              </button>
+            </div>
+            <p class="field__hint muted" id="themeHint">
+              Switch between Light and Dark mode.
+            </p>
+          </div>
+
+          <!-- Language -->
+          <div class="field">
+            <label class="field__label" for="languageSelect" id="languageLabel">Language</label>
+            <div class="field__control">
+              <select id="languageSelect" class="select" aria-describedby="languageHint">
+                <option value="en">English</option>
+                <option value="hi">Hindi</option>
+                <option value="te">Telugu</option>
+              </select>
+            </div>
+            <p class="field__hint muted" id="languageHint">
+              Choose your preferred language.
+            </p>
+          </div>
+
+          <!-- Preview -->
+          <div class="preview">
+            <h2 id="previewTitle">Preview</h2>
+            <p id="previewText" class="muted">
+              This area updates instantly based on your saved settings.
+            </p>
+
+            <div class="pill-row">
+              <span class="pill" id="pillTheme">Theme: Light</span>
+              <span class="pill" id="pillLang">Language: English</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card__footer">
+          <button id="resetBtn" type="button" class="btn btn--ghost">
+            Reset to defaults
+          </button>
+
+          <div class="save-indicator muted" aria-live="polite">
+            <span id="saveText">Changes are saved automatically.</span>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer muted">
+        <p>
+          Built with <strong>localStorage</strong> + <strong>JSON</strong> + <strong>ES6 Modules</strong>.
+        </p>
+      </footer>
+    </main>
+
+    <script type="module" src="./js/main.js"></script>
+  </body>
+</html>
