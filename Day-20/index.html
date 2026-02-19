@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Day 20: JS APIs Playground</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div>
+        <h1>Day 20: JavaScript & the Power of APIs</h1>
+        <p class="sub">Random topic demo + all topics inside one app (callbacks, promises, async/await, fetch, event loop, closures, TDZ, etc.)</p>
+      </div>
+      <button id="btnRandom" class="btn">🎲 Run Random Topic</button>
+    </header>
+
+    <main class="grid">
+      <section class="card">
+        <h2>Topics</h2>
+        <p class="muted">Click any topic to run a demo. Output appears in the console panel.</p>
+        <div id="topics" class="topics"></div>
+      </section>
+
+      <section class="card">
+        <h2>Console</h2>
+        <div class="console-actions">
+          <button id="btnClear" class="btn btn-ghost">Clear</button>
+          <button id="btnCopy" class="btn btn-ghost">Copy</button>
+        </div>
+        <pre id="console" class="console" aria-live="polite"></pre>
+        <p class="hint">Tip: Open DevTools (F12) too — some demos also log there.</p>
+      </section>
+
+      <section class="card wide">
+        <h2>Quick Notes</h2>
+        <ul class="notes">
+          <li><b>Timers:</b> <code>setTimeout</code> & <code>setInterval</code> run via the task queue.</li>
+          <li><b>Callbacks → Promises → Async/Await</b> are evolutions of async handling.</li>
+          <li><b>Fetch:</b> network requests are async; handle errors with <code>try/catch</code>.</li>
+          <li><b>Event Loop:</b> call stack + microtasks (Promises) + macrotasks (timers).</li>
+          <li><b>Hoisting/TDZ:</b> <code>var</code> hoists differently than <code>let/const</code>.</li>
+          <li><b>Closures:</b> functions remember outer variables even after outer finishes.</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>Made for your Day 20 topics • HTML + CSS + JS (separate files)</span>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
