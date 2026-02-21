@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Intern Skill Log — Mongo-Style Queries (Mini Project)</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">M</div>
+      <div class="brandText">
+        <h1>Intern Skill Log</h1>
+        <p>Mini project for Advanced Queries + CRUD (Mongo-style in-browser)</p>
+      </div>
+    </div>
+
+    <div class="chipRow">
+      <span class="chip">Operators & Complex Queries</span>
+      <span class="chip">$in / $nin</span>
+      <span class="chip">Querying Arrays</span>
+      <span class="chip">Updating</span>
+      <span class="chip">Deleting</span>
+    </div>
+  </header>
+
+  <main class="grid">
+    <!-- LEFT: Insert + Data -->
+    <section class="card">
+      <div class="cardHead">
+        <h2>Insert Document</h2>
+        <p>Create a new task log (stored in-memory like a collection).</p>
+      </div>
+
+      <form id="insertForm" class="form">
+        <div class="row">
+          <label>
+            Title
+            <input id="title" type="text" placeholder="e.g., Build Mongo query UI" required />
+          </label>
+          <label>
+            Assignee
+            <input id="assignee" type="text" placeholder="e.g., Akhi" required />
+          </label>
+        </div>
+
+        <div class="row">
+          <label>
+            Status
+            <select id="status">
+              <option value="open">open</option>
+              <option value="in_progress">in_progress</option>
+              <option value="done">done</option>
+              <option value="blocked">blocked</option>
+            </select>
+          </label>
+
+          <label>
+            Priority
+            <select id="priority">
+              <option value="low">low</option>
+              <option value="medium" selected>medium</option>
+              <option value="high">high</option>
+              <option value="urgent">urgent</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="row">
+          <label>
+            Difficulty (1–10)
+            <input id="difficulty" type="number" min="1" max="10" value="5" />
+          </label>
+          <label>
+            Hours
+            <input id="hours" type="number" min="0" step="0.5" value="1" />
+          </label>
+        </div>
+
+        <div class="row">
+          <label class="wide">
+            Tags (comma-separated)
+            <input id="tags" type="text" placeholder="e.g., mongodb, crud, arrays" />
+          </label>
+        </div>
+
+        <div class="row">
+          <label class="wide">
+            Notes (optional)
+            <input id="notes" type="text" placeholder="e.g., learned $in/$nin and update operators" />
+          </label>
+        </div>
+
+        <div class="actions">
+          <button class="btn primary" type="submit">Insert</button>
+          <button class="btn ghost" id="seedBtn" type="button">Load Sample Data</button>
+          <button class="btn danger" id="resetBtn" type="button">Reset Collection</button>
+        </div>
+      </form>
+
+      <div class="divider"></div>
+
+      <div class="cardHead">
+        <h2>Collection</h2>
+        <p><span id="countBadge" class="badge">0 docs</span></p>
+      </div>
+
+      <div class="tableWrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>_id</th>
+              <th>title</th>
+              <th>assignee</th>
+              <th>status</th>
+              <th>priority</th>
+              <th>tags</th>
+              <th>difficulty</th>
+              <th>hours</th>
+            </tr>
+          </thead>
+          <tbody id="collectionRows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- RIGHT: Query + Update + Delete -->
+    <section class="card">
+      <div class="cardHead">
+        <h2>Query / Update / Delete</h2>
+        <p>Write Mongo-style JSON. Works on the in-browser collection.</p>
+      </div>
+
+      <div class="tabs">
+        <button class="tab active" data-tab="find">find()</button>
+        <button class="tab" data-tab="update">updateMany()</button>
+        <button class="tab" data-tab="delete">deleteMany()</button>
+        <button class="tab" data-tab="examples">Examples</button>
+      </div>
+
+      <!-- FIND -->
+      <div class="panel active" id="tab-find">
+        <div class="panelGrid">
+          <div>
+            <label class="label">Filter (JSON)</label>
+            <textarea id="findFilter" spellcheck="false"></textarea>
+            <div class="miniRow">
+              <label class="tiny">
+                Limit
+                <input id="findLimit" type="number" min="1" value="50" />
+              </label>
+              <label class="tiny">
+                Sort by
+                <select id="findSortKey">
+                  <option value="createdAt">createdAt</option>
+                  <option value="hours">hours</option>
+                  <option value="difficulty">difficulty</option>
+                  <option value="priority">priority</option>
+                  <option value="status">status</option>
+                  <option value="assignee">assignee</option>
+                </select>
+              </label>
+              <label class="tiny">
+                Order
+                <select id="findSortDir">
+                  <option value="-1">desc</option>
+                  <option value="1">asc</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="actions">
+              <button class="btn primary" id="runFindBtn" type="button">Run find()</button>
+              <button class="btn ghost" id="prettifyFindBtn" type="button">Prettify</button>
+              <button class="btn subtle" id="clearFindBtn" type="button">Clear</button>
+            </div>
+          </div>
+
+          <div>
+            <label class="label">Projection (JSON, optional)</label>
+            <textarea id="findProjection" spellcheck="false"></textarea>
+
+            <div class="hint">
+              <strong>Tip:</strong> Projection example:
+              <code>{"title":1,"assignee":1,"tags":1,"_id":0}</code>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- UPDATE -->
+      <div class="panel" id="tab-update">
+        <label class="label">Filter (JSON)</label>
+        <textarea id="updateFilter" spellcheck="false"></textarea>
+
+        <label class="label">Update (JSON)</label>
+        <textarea id="updateDoc" spellcheck="false"></textarea>
+
+        <div class="actions">
+          <button class="btn primary" id="runUpdateBtn" type="button">Run updateMany()</button>
+          <button class="btn ghost" id="prettifyUpdateBtn" type="button">Prettify</button>
+          <button class="btn subtle" id="clearUpdateBtn" type="button">Clear</button>
+        </div>
+
+        <div class="hint">
+          Supported: <code>$set</code>, <code>$inc</code>, <code>$push</code>, <code>$pull</code>
+        </div>
+      </div>
+
+      <!-- DELETE -->
+      <div class="panel" id="tab-delete">
+        <label class="label">Filter (JSON)</label>
+        <textarea id="deleteFilter" spellcheck="false"></textarea>
+
+        <div class="actions">
+          <button class="btn danger" id="runDeleteBtn" type="button">Run deleteMany()</button>
+          <button class="btn ghost" id="prettifyDeleteBtn" type="button">Prettify</button>
+          <button class="btn subtle" id="clearDeleteBtn" type="button">Clear</button>
+        </div>
+
+        <div class="hint">
+          Use complex filters with <code>$and/$or</code> and <code>$in/$nin</code>.
+        </div>
+      </div>
+
+      <!-- EXAMPLES -->
+      <div class="panel" id="tab-examples">
+        <div class="examples">
+          <button class="ex" data-target="find" data-payload="ex1">Find: high/urgent, hours > 2</button>
+          <button class="ex" data-target="find" data-payload="ex2">Find: tags has 'mongodb' AND status in [open, in_progress]</button>
+          <button class="ex" data-target="find" data-payload="ex3">Find: assignee regex '^A' OR difficulty >= 8</button>
+          <button class="ex" data-target="find" data-payload="ex4">Find: tags $all + notes $elemMatch</button>
+
+          <button class="ex" data-target="update" data-payload="up1">Update: set status=done where hours < 1 and priority != urgent</button>
+          <button class="ex" data-target="update" data-payload="up2">Update: push a tag to tasks for Akhi</button>
+          <button class="ex" data-target="update" data-payload="up3">Update: pull a tag from all docs</button>
+
+          <button class="ex" data-target="delete" data-payload="del1">Delete: status in [done] AND hours < 0.5</button>
+          <button class="ex" data-target="delete" data-payload="del2">Delete: priority nin [high, urgent] AND difficulty < 3</button>
+        </div>
+
+        <div class="hint">
+          Click an example to auto-fill JSON. Then run the action.
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="cardHead">
+        <h2>Output</h2>
+        <p>Result of the last operation.</p>
+      </div>
+
+      <pre class="output" id="output"></pre>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Built for Day 25: Advanced Queries & CRUD Part 2</span>
+    <span class="sep">•</span>
+    <span>Mongo-style logic implemented in JS (no backend)</span>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
