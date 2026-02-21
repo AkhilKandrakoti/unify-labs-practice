@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Campus Lost & Found — MongoDB Simulator</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">LF</div>
+      <div class="brand-text">
+        <div class="brand-title">Campus Lost & Found</div>
+        <div class="brand-subtitle">MongoDB Collections • Documents • Compass UI • mongosh</div>
+      </div>
+    </div>
+
+    <div class="topbar-actions">
+      <button class="btn" id="seedBtn" type="button">Seed Sample Data</button>
+      <button class="btn btn-ghost" id="resetBtn" type="button">Reset DB</button>
+    </div>
+  </header>
+
+  <div class="app" id="main">
+    <!-- Sidebar (Compass-like) -->
+    <aside class="sidebar" aria-label="Collections">
+      <div class="panel">
+        <div class="panel-title">Database</div>
+        <div class="kv">
+          <span class="k">Name</span>
+          <span class="v mono" id="dbName">campus_lost_found</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">Collections</div>
+        <div class="collections" id="collectionsList" role="listbox" aria-label="Collection list"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">Quick Actions</div>
+        <div class="stack">
+          <button class="btn btn-primary" id="newDocBtn" type="button">Insert Document</button>
+          <button class="btn" id="exportBtn" type="button">Export JSON</button>
+          <label class="btn btn-ghost file-btn">
+            Import JSON
+            <input type="file" id="importFile" accept="application/json" hidden />
+          </label>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="content">
+      <!-- Toolbar -->
+      <section class="toolbar panel" aria-label="Toolbar">
+        <div class="toolbar-left">
+          <div class="crumbs">
+            <span class="crumb mono" id="crumbDb">campus_lost_found</span>
+            <span class="crumb-sep">/</span>
+            <span class="crumb mono" id="crumbCollection">items</span>
+          </div>
+
+          <div class="search">
+            <input id="searchInput" type="search" placeholder="Search documents (JSON contains)..." autocomplete="off" />
+            <button class="btn btn-ghost" id="clearSearchBtn" type="button">Clear</button>
+          </div>
+        </div>
+
+        <div class="toolbar-right">
+          <div class="meta">
+            <span class="pill" id="docCountPill">0 docs</span>
+            <span class="pill pill-muted" id="statusPill">Ready</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Documents + Editor -->
+      <section class="grid">
+        <!-- Documents table -->
+        <section class="panel docs" aria-label="Documents">
+          <div class="panel-title row">
+            <span>Documents</span>
+            <div class="row-actions">
+              <button class="btn btn-ghost" id="refreshBtn" type="button">Refresh</button>
+            </div>
+          </div>
+
+          <div class="table-wrap" role="region" aria-label="Documents table">
+            <table class="table" id="docsTable">
+              <thead>
+                <tr>
+                  <th style="width: 180px;">_id</th>
+                  <th>Preview</th>
+                  <th style="width: 150px;">Updated</th>
+                </tr>
+              </thead>
+              <tbody id="docsTbody"></tbody>
+            </table>
+          </div>
+
+          <div class="hint">
+            Tip: Click a row to view/edit the full document.
+          </div>
+        </section>
+
+        <!-- Document editor -->
+        <section class="panel editor" aria-label="Document editor">
+          <div class="panel-title">Document Editor</div>
+
+          <div class="editor-head">
+            <div class="kv">
+              <span class="k">Selected _id</span>
+              <span class="v mono" id="selectedId">—</span>
+            </div>
+            <div class="editor-actions">
+              <button class="btn btn-primary" id="saveBtn" type="button" disabled>Save</button>
+              <button class="btn" id="duplicateBtn" type="button" disabled>Duplicate</button>
+              <button class="btn btn-danger" id="deleteBtn" type="button" disabled>Delete</button>
+            </div>
+          </div>
+
+          <label class="label" for="jsonEditor">JSON</label>
+          <textarea id="jsonEditor" class="textarea mono" spellcheck="false"
+            placeholder='Select a document… or click "Insert Document".'></textarea>
+
+          <div class="editor-foot">
+            <div class="muted mono" id="jsonLint">—</div>
+          </div>
+        </section>
+      </section>
+
+      <!-- mongosh terminal -->
+      <section class="panel terminal" aria-label="mongosh terminal">
+        <div class="panel-title">mongosh (Simulator)</div>
+
+        <div class="terminal-body" id="terminalBody" role="log" aria-live="polite"></div>
+
+        <form class="terminal-input" id="terminalForm" autocomplete="off">
+          <span class="prompt mono" id="promptText">campus_lost_found&gt;</span>
+          <input class="mono" id="terminalCmd" type="text" placeholder='Try: show collections' />
+          <button class="btn btn-ghost" type="submit">Run</button>
+        </form>
+
+        <div class="hint">
+          Supported commands:
+          <span class="mono">show dbs</span>,
+          <span class="mono">use &lt;db&gt;</span>,
+          <span class="mono">show collections</span>,
+          <span class="mono">db.&lt;collection&gt;.find()</span>,
+          <span class="mono">db.&lt;collection&gt;.find({ key: "value" })</span>,
+          <span class="mono">insertOne({...})</span>,
+          <span class="mono">updateOne({ _id: "..." }, { $set: {...} })</span>,
+          <span class="mono">deleteOne({ _id: "..." })</span>,
+          <span class="mono">help</span>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <span class="muted">Built for Day 23: MongoDB Foundations & Environment Setup</span>
+  </footer>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
