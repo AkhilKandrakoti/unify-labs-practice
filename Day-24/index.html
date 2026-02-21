@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Personal Library Tracker — CRUD (Create & Read)</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header class="topbar" role="banner">
+    <div class="container topbar__inner">
+      <div class="brand">
+        <div class="brand__logo" aria-hidden="true">📚</div>
+        <div>
+          <h1 class="brand__title">Personal Library Tracker</h1>
+          <p class="brand__subtitle">Create & Read • Find • Sort & Limit • Nested Notes</p>
+        </div>
+      </div>
+
+      <div class="topbar__actions">
+        <button id="seedBtn" class="btn btn--secondary" type="button" title="Add sample books">Seed Demo</button>
+        <button id="clearBtn" class="btn btn--danger" type="button" title="Clear all saved data">Clear Data</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" id="main">
+    <section class="grid">
+      <!-- LEFT: CREATE -->
+      <section class="card" aria-labelledby="addBookTitle">
+        <div class="card__header">
+          <h2 id="addBookTitle">Add New Book (Create)</h2>
+          <p class="muted">Creates a new “document” and saves it in LocalStorage.</p>
+        </div>
+
+        <form id="bookForm" class="form" autocomplete="off">
+          <div class="field">
+            <label for="title">Title <span class="req">*</span></label>
+            <input id="title" name="title" type="text" placeholder="e.g., Clean Code" required maxlength="80" />
+          </div>
+
+          <div class="field">
+            <label for="author">Author <span class="req">*</span></label>
+            <input id="author" name="author" type="text" placeholder="e.g., Robert C. Martin" required maxlength="80" />
+          </div>
+
+          <div class="field">
+            <label for="tags">Tags (comma-separated)</label>
+            <input id="tags" name="tags" type="text" placeholder="e.g., programming, best-practices" maxlength="120" />
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="status">Status</label>
+              <select id="status" name="status">
+                <option value="to-read">To Read</option>
+                <option value="reading">Reading</option>
+                <option value="finished">Finished</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="rating">Rating (0–5)</label>
+              <input id="rating" name="rating" type="number" min="0" max="5" step="0.5" value="0" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="note">First Note (Nested Document)</label>
+            <textarea id="note" name="note" rows="3" placeholder="Optional: add a note saved inside the book document..."></textarea>
+          </div>
+
+          <button class="btn btn--primary" type="submit">Add Book</button>
+          <p id="formMsg" class="form__msg" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <!-- RIGHT: READ + FIND + SORT/LIMIT -->
+      <section class="card" aria-labelledby="libraryTitle">
+        <div class="card__header">
+          <h2 id="libraryTitle">Library (Read)</h2>
+          <p class="muted">
+            Find documents by text/tags/status, sort them, and limit results.
+          </p>
+        </div>
+
+        <div class="toolbar">
+          <div class="field">
+            <label for="query">Search (title/author/tags)</label>
+            <input id="query" type="search" placeholder="Type to find books..." />
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="filterStatus">Filter Status</label>
+              <select id="filterStatus">
+                <option value="all">All</option>
+                <option value="to-read">To Read</option>
+                <option value="reading">Reading</option>
+                <option value="finished">Finished</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="sortBy">Sort By</label>
+              <select id="sortBy">
+                <option value="createdAt_desc">Newest</option>
+                <option value="createdAt_asc">Oldest</option>
+                <option value="title_asc">Title (A→Z)</option>
+                <option value="title_desc">Title (Z→A)</option>
+                <option value="rating_desc">Rating (High→Low)</option>
+                <option value="rating_asc">Rating (Low→High)</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="limit">Limit</label>
+              <select id="limit">
+                <option value="5">5</option>
+                <option value="10" selected>10</option>
+                <option value="20">20</option>
+                <option value="999">All</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="summary" aria-live="polite">
+          <span id="countText" class="pill">0 books</span>
+          <span id="filteredText" class="pill pill--ghost">0 shown</span>
+        </div>
+
+        <div id="list" class="list" role="list"></div>
+
+        <details class="help">
+          <summary>How this matches today’s topics</summary>
+          <ul>
+            <li><b>Adding New Documents:</b> submit form → new book object stored in LocalStorage.</li>
+            <li><b>Finding Documents:</b> search + status filter → in-memory query on stored docs.</li>
+            <li><b>Sorting & Limiting Data:</b> sort dropdown + limit dropdown.</li>
+            <li><b>Nested Documents:</b> each book contains <code>notes[]</code> (nested objects).</li>
+          </ul>
+        </details>
+      </section>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span class="muted">LocalStorage demo • No backend required</span>
+    </div>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
