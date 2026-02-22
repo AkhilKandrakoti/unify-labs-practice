@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Neighborhood Help Hub</title>
+  <meta name="description" content="MongoDB-powered local services directory with cursor pagination and single profile view." />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">NH</div>
+      <div class="brand-text">
+        <div class="brand-title">Neighborhood Help Hub</div>
+        <div class="brand-sub">MongoDB Drivers • Cursor Pagination • findOne</div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="themeBtn" class="btn btn-ghost" type="button">Theme</button>
+      <button id="refreshBtn" class="btn btn-primary" type="button">Refresh</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-left">
+        <h1>Find trusted services near you.</h1>
+        <p class="muted">
+          Search, filter, and open full profiles. Results load using cursor-based pagination for performance.
+        </p>
+
+        <div class="stats" role="status" aria-live="polite">
+          <div class="stat">
+            <div class="stat-k" id="statTotal">—</div>
+            <div class="stat-v">results</div>
+          </div>
+          <div class="stat">
+            <div class="stat-k" id="statApi">—</div>
+            <div class="stat-v">API</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="card">
+          <div class="card-h">
+            <h2>Directory Filters</h2>
+            <p class="muted small">Server-powered (MongoDB)</p>
+          </div>
+
+          <form id="filters" class="filters">
+            <label class="field">
+              <span class="label">Search</span>
+              <input id="q" type="search" placeholder="e.g., electrician, tutor, Priya..." />
+            </label>
+
+            <div class="grid-2">
+              <label class="field">
+                <span class="label">Category</span>
+                <select id="category">
+                  <option value="">All</option>
+                  <option>Electrician</option>
+                  <option>Plumber</option>
+                  <option>Tutor</option>
+                  <option>Mechanic</option>
+                  <option>Housekeeping</option>
+                  <option>IT Support</option>
+                  <option>Fitness Coach</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span class="label">Min rating</span>
+                <select id="minRating">
+                  <option value="">Any</option>
+                  <option value="3.5">3.5+</option>
+                  <option value="4.0">4.0+</option>
+                  <option value="4.5">4.5+</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="grid-2">
+              <label class="field">
+                <span class="label">Sort</span>
+                <select id="sort">
+                  <option value="relevance">Relevance</option>
+                  <option value="rating_desc">Rating (high → low)</option>
+                  <option value="price_asc">Price (low → high)</option>
+                  <option value="recent">Recently added</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span class="label">Page size</span>
+                <select id="limit">
+                  <option value="8">8</option>
+                  <option value="12" selected>12</option>
+                  <option value="16">16</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="filter-actions">
+              <button class="btn btn-primary" type="submit">Apply</button>
+              <button id="resetBtn" class="btn btn-ghost" type="button">Reset</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="results">
+      <div class="results-bar">
+        <div>
+          <h3>Results</h3>
+          <p class="muted small" id="metaText">Ready.</p>
+        </div>
+        <button id="loadMoreBtn" class="btn btn-primary" type="button" disabled>Load more</button>
+      </div>
+
+      <div id="grid" class="grid" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <dialog id="detailsModal" class="modal">
+    <form method="dialog" class="modal-card">
+      <div class="modal-h">
+        <div>
+          <h3 id="dName">Service</h3>
+          <p class="muted small" id="dMeta">—</p>
+        </div>
+        <button class="icon-btn" value="cancel" aria-label="Close">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="detail-grid">
+          <div class="detail"><div class="k">Category</div><div class="v" id="dCategory">—</div></div>
+          <div class="detail"><div class="k">Rating</div><div class="v" id="dRating">—</div></div>
+          <div class="detail"><div class="k">Starting price</div><div class="v" id="dPrice">—</div></div>
+          <div class="detail"><div class="k">City</div><div class="v" id="dCity">—</div></div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="detail">
+          <div class="k">About</div>
+          <div class="v" id="dAbout">—</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="detail">
+          <div class="k">Tags</div>
+          <div class="chips" id="dTags"></div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="detail">
+          <div class="k">Contact</div>
+          <div class="v" id="dContact">—</div>
+        </div>
+      </div>
+
+      <div class="modal-f">
+        <a id="dMap" class="btn btn-ghost" href="#" target="_blank" rel="noreferrer">Open maps</a>
+        <button class="btn btn-primary" value="cancel">Done</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="./app.js"></script>
+</body>
+</html>
