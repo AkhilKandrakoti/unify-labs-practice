@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Neighborhood Help Hub — RESTful Requests Board</title>
+  <meta name="description" content="Mini project for REST API integration: POST, PATCH, DELETE using fetch + Postman." />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">NH</div>
+      <div>
+        <h1>Neighborhood Help Hub</h1>
+        <p class="sub">RESTful Interface — POST • PATCH • DELETE • Postman-ready</p>
+      </div>
+    </div>
+
+    <div class="env">
+      <span class="badge">API:</span>
+      <code id="apiBase"></code>
+    </div>
+  </header>
+
+  <main class="grid">
+    <!-- Create (POST) -->
+    <section class="card">
+      <div class="card__head">
+        <h2>Create Request (POST)</h2>
+        <p>Publish a new help request to the board.</p>
+      </div>
+
+      <form id="createForm" class="form">
+        <label class="field">
+          <span>Title</span>
+          <input id="title" name="title" type="text" placeholder="Need help moving a table" required minlength="3" />
+        </label>
+
+        <label class="field">
+          <span>Description</span>
+          <textarea id="body" name="body" rows="4" placeholder="Describe what help you need, when, and location details (optional)." required minlength="8"></textarea>
+        </label>
+
+        <label class="field">
+          <span>Requester ID (userId)</span>
+          <input id="userId" name="userId" type="number" min="1" max="9999" value="1" required />
+        </label>
+
+        <button class="btn btn--primary" type="submit">
+          <span class="dot"></span> Create
+        </button>
+
+        <div class="hint">
+          Tip: Try the same POST in Postman using JSON body.
+        </div>
+      </form>
+    </section>
+
+    <!-- Update (PATCH) + Delete -->
+    <section class="card">
+      <div class="card__head">
+        <h2>Manage Request (PATCH / DELETE)</h2>
+        <p>Update status/notes or remove a request by ID.</p>
+      </div>
+
+      <div class="form">
+        <label class="field">
+          <span>Request ID</span>
+          <input id="manageId" type="number" min="1" value="1" />
+        </label>
+
+        <label class="field">
+          <span>Patch: New Title (optional)</span>
+          <input id="patchTitle" type="text" placeholder="Update title..." />
+        </label>
+
+        <label class="field">
+          <span>Patch: New Description (optional)</span>
+          <textarea id="patchBody" rows="3" placeholder="Update description..."></textarea>
+        </label>
+
+        <div class="row">
+          <button class="btn btn--ghost" id="btnPatch" type="button">
+            <span class="dot"></span> PATCH Update
+          </button>
+
+          <button class="btn btn--danger" id="btnDelete" type="button">
+            <span class="dot"></span> DELETE
+          </button>
+        </div>
+
+        <div class="hint">
+          JSONPlaceholder is a mock API: updates/deletes respond successfully but won’t permanently change server data.
+        </div>
+      </div>
+    </section>
+
+    <!-- List / Refresh -->
+    <section class="card card--wide">
+      <div class="card__head head-row">
+        <div>
+          <h2>Requests Board</h2>
+          <p>Fetched from API (GET). Use this list to pick IDs for PATCH/DELETE.</p>
+        </div>
+        <div class="row">
+          <button class="btn btn--secondary" id="btnLoad" type="button">
+            <span class="dot"></span> Refresh List
+          </button>
+          <button class="btn btn--ghost" id="btnClearLog" type="button">Clear Log</button>
+        </div>
+      </div>
+
+      <div class="split">
+        <div>
+          <div class="toolbar">
+            <input id="search" class="search" type="search" placeholder="Search title/body…" />
+            <select id="limit" class="select" title="Limit">
+              <option value="8">Show 8</option>
+              <option value="12" selected>Show 12</option>
+              <option value="20">Show 20</option>
+            </select>
+          </div>
+
+          <div id="list" class="list" aria-live="polite"></div>
+        </div>
+
+        <aside class="console">
+          <div class="console__head">
+            <h3>API Console</h3>
+            <span class="pill" id="netState">idle</span>
+          </div>
+          <pre id="log" class="log"></pre>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>
+      Built for Day 27 — REST API Integration (Postman + POST + PATCH + DELETE).
+    </p>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
