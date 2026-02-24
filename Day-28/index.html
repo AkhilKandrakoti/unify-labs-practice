@@ -3,144 +3,190 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Neighborhood Help Hub — RESTful Requests Board</title>
-  <meta name="description" content="Mini project for REST API integration: POST, PATCH, DELETE using fetch + Postman." />
+  <title>Cloud Asset Explorer — Pagination + Index Advisor</title>
+  <meta name="description" content="A professional dashboard demo implementing pagination, search, filtering, sorting, and MongoDB index strategy visualization." />
   <link rel="stylesheet" href="./styles.css" />
 </head>
 
 <body>
-  <header class="topbar">
-    <div class="brand">
-      <div class="logo" aria-hidden="true">NH</div>
-      <div>
-        <h1>Neighborhood Help Hub</h1>
-        <p class="sub">RESTful Interface — POST • PATCH • DELETE • Postman-ready</p>
-      </div>
-    </div>
+  <div class="bg-noise" aria-hidden="true"></div>
 
-    <div class="env">
-      <span class="badge">API:</span>
-      <code id="apiBase"></code>
+  <header class="top">
+    <div class="wrap top__inner">
+      <div class="brand">
+        <div class="brand__mark" aria-hidden="true">CAE</div>
+        <div class="brand__text">
+          <h1>Cloud Asset Explorer</h1>
+          <p>Pagination • Index Strategy • Atlas-ready query patterns</p>
+        </div>
+      </div>
+
+      <div class="top__actions">
+        <button class="btn btn--ghost" id="btnReset" type="button" title="Reset filters">
+          Reset
+        </button>
+        <button class="btn" id="btnSeed" type="button" title="Regenerate demo data">
+          Regenerate Data
+        </button>
+      </div>
     </div>
   </header>
 
-  <main class="grid">
-    <!-- Create (POST) -->
+  <main class="wrap grid" id="app">
+    <!-- LEFT: Explorer -->
     <section class="card">
       <div class="card__head">
-        <h2>Create Request (POST)</h2>
-        <p>Publish a new help request to the board.</p>
+        <h2>Asset Browser</h2>
+        <span class="pill" id="resultPill">0 results</span>
       </div>
 
-      <form id="createForm" class="form">
+      <div class="toolbar">
         <label class="field">
-          <span>Title</span>
-          <input id="title" name="title" type="text" placeholder="Need help moving a table" required minlength="3" />
-        </label>
-
-        <label class="field">
-          <span>Description</span>
-          <textarea id="body" name="body" rows="4" placeholder="Describe what help you need, when, and location details (optional)." required minlength="8"></textarea>
-        </label>
-
-        <label class="field">
-          <span>Requester ID (userId)</span>
-          <input id="userId" name="userId" type="number" min="1" max="9999" value="1" required />
-        </label>
-
-        <button class="btn btn--primary" type="submit">
-          <span class="dot"></span> Create
-        </button>
-
-        <div class="hint">
-          Tip: Try the same POST in Postman using JSON body.
-        </div>
-      </form>
-    </section>
-
-    <!-- Update (PATCH) + Delete -->
-    <section class="card">
-      <div class="card__head">
-        <h2>Manage Request (PATCH / DELETE)</h2>
-        <p>Update status/notes or remove a request by ID.</p>
-      </div>
-
-      <div class="form">
-        <label class="field">
-          <span>Request ID</span>
-          <input id="manageId" type="number" min="1" value="1" />
-        </label>
-
-        <label class="field">
-          <span>Patch: New Title (optional)</span>
-          <input id="patchTitle" type="text" placeholder="Update title..." />
-        </label>
-
-        <label class="field">
-          <span>Patch: New Description (optional)</span>
-          <textarea id="patchBody" rows="3" placeholder="Update description..."></textarea>
+          <span class="field__label">Search</span>
+          <div class="field__control">
+            <input id="q" type="search" placeholder="Search name, team, tags… (debounced)" autocomplete="off" />
+            <kbd class="kbd" title="Tip">⌘K</kbd>
+          </div>
+          <small class="field__hint">Simulates Atlas text search / indexed prefix queries.</small>
         </label>
 
         <div class="row">
-          <button class="btn btn--ghost" id="btnPatch" type="button">
-            <span class="dot"></span> PATCH Update
-          </button>
-
-          <button class="btn btn--danger" id="btnDelete" type="button">
-            <span class="dot"></span> DELETE
-          </button>
-        </div>
-
-        <div class="hint">
-          JSONPlaceholder is a mock API: updates/deletes respond successfully but won’t permanently change server data.
-        </div>
-      </div>
-    </section>
-
-    <!-- List / Refresh -->
-    <section class="card card--wide">
-      <div class="card__head head-row">
-        <div>
-          <h2>Requests Board</h2>
-          <p>Fetched from API (GET). Use this list to pick IDs for PATCH/DELETE.</p>
-        </div>
-        <div class="row">
-          <button class="btn btn--secondary" id="btnLoad" type="button">
-            <span class="dot"></span> Refresh List
-          </button>
-          <button class="btn btn--ghost" id="btnClearLog" type="button">Clear Log</button>
-        </div>
-      </div>
-
-      <div class="split">
-        <div>
-          <div class="toolbar">
-            <input id="search" class="search" type="search" placeholder="Search title/body…" />
-            <select id="limit" class="select" title="Limit">
-              <option value="8">Show 8</option>
-              <option value="12" selected>Show 12</option>
-              <option value="20">Show 20</option>
+          <label class="field">
+            <span class="field__label">Region</span>
+            <select id="region">
+              <option value="all">All</option>
+              <option value="ap-south-1">ap-south-1</option>
+              <option value="ap-southeast-1">ap-southeast-1</option>
+              <option value="us-east-1">us-east-1</option>
+              <option value="eu-west-1">eu-west-1</option>
             </select>
-          </div>
+          </label>
 
-          <div id="list" class="list" aria-live="polite"></div>
+          <label class="field">
+            <span class="field__label">Status</span>
+            <select id="status">
+              <option value="all">All</option>
+              <option value="running">running</option>
+              <option value="stopped">stopped</option>
+              <option value="degraded">degraded</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span class="field__label">Sort</span>
+            <select id="sort">
+              <option value="updated_desc">Last Updated (newest)</option>
+              <option value="updated_asc">Last Updated (oldest)</option>
+              <option value="cost_desc">Monthly Cost (high → low)</option>
+              <option value="cost_asc">Monthly Cost (low → high)</option>
+              <option value="name_asc">Name (A → Z)</option>
+              <option value="name_desc">Name (Z → A)</option>
+            </select>
+          </label>
         </div>
 
-        <aside class="console">
-          <div class="console__head">
-            <h3>API Console</h3>
-            <span class="pill" id="netState">idle</span>
+        <div class="row row--tight">
+          <label class="field">
+            <span class="field__label">Page Size</span>
+            <select id="pageSize">
+              <option>6</option>
+              <option selected>9</option>
+              <option>12</option>
+              <option>18</option>
+            </select>
+          </label>
+
+          <div class="metrics" aria-live="polite">
+            <div class="metric">
+              <span class="metric__k">Shown</span>
+              <span class="metric__v" id="shownCount">0</span>
+            </div>
+            <div class="metric">
+              <span class="metric__k">Total</span>
+              <span class="metric__v" id="totalCount">0</span>
+            </div>
+            <div class="metric">
+              <span class="metric__k">Page</span>
+              <span class="metric__v" id="pageCount">0/0</span>
+            </div>
           </div>
-          <pre id="log" class="log"></pre>
-        </aside>
+        </div>
+      </div>
+
+      <div class="list" id="list" role="list"></div>
+
+      <div class="pagination" id="pagination">
+        <button class="btn btn--ghost" id="prev" type="button">← Prev</button>
+        <div class="pager" id="pager" aria-label="Pagination"></div>
+        <button class="btn btn--ghost" id="next" type="button">Next →</button>
       </div>
     </section>
+
+    <!-- RIGHT: Index + Atlas Panel -->
+    <aside class="card card--side">
+      <div class="card__head">
+        <h2>Index Advisor</h2>
+        <span class="pill pill--soft" id="perfPill">Estimator</span>
+      </div>
+
+      <div class="side">
+        <div class="panel">
+          <h3>Current “Query Shape”</h3>
+          <pre class="code" id="queryShape">{}</pre>
+          <p class="muted">
+            This is what your backend would translate into a MongoDB query + options.
+          </p>
+        </div>
+
+        <div class="panel">
+          <h3>Recommended Indexes</h3>
+          <div class="chips" id="indexChips"></div>
+          <p class="muted">
+            Based on active filters + sort. (Compound indexes matter!)
+          </p>
+        </div>
+
+        <div class="panel">
+          <h3>Performance Estimator</h3>
+
+          <div class="meter">
+            <div class="meter__row">
+              <span>Estimated Docs Scanned</span>
+              <strong id="scanCount">0</strong>
+            </div>
+            <div class="meter__bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="meter__fill" id="meterFill"></div>
+            </div>
+            <div class="meter__row meter__row--small">
+              <span class="muted">Lower scan = better index coverage</span>
+              <span class="muted" id="coverageText">—</span>
+            </div>
+          </div>
+
+          <div class="callout">
+            <strong>MongoDB Atlas Tip:</strong>
+            <p>
+              In Atlas, you’d verify this with <span class="mono">explain()</span> and build indexes in the UI or via driver scripts.
+            </p>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>Knowledge Check (Quick)</h3>
+          <ol class="quiz">
+            <li>Why can a compound index speed up both filtering and sorting?</li>
+            <li>When is a text index better than a normal index?</li>
+            <li>What’s a tradeoff of too many indexes?</li>
+          </ol>
+          <p class="muted">Use this mini project to answer confidently.</p>
+        </div>
+      </div>
+    </aside>
   </main>
 
-  <footer class="footer">
-    <p>
-      Built for Day 27 — REST API Integration (Postman + POST + PATCH + DELETE).
-    </p>
+  <footer class="wrap foot">
+    <span class="muted">CAE Demo • Frontend-only simulation of Atlas-ready patterns</span>
+    <span class="muted">Keyboard: <span class="mono">Ctrl/⌘ + K</span> focus search • <span class="mono">← →</span> page</span>
   </footer>
 
   <script src="./app.js"></script>
