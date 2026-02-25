@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>ZENITH — Mini Blogging CMS</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <div class="brand">
+        <div class="brand__logo" aria-hidden="true">Z</div>
+        <div>
+          <div class="brand__name">ZENITH</div>
+          <div class="brand__tag">Mini Blogging CMS (CRUD + Dynamic UI)</div>
+        </div>
+      </div>
+
+      <div class="topbar__actions">
+        <button class="btn btn--ghost" id="seedBtn" type="button">Seed Demo Data</button>
+        <button class="btn" id="newPostBtn" type="button">+ New Post</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container main">
+    <section class="panel">
+      <div class="panel__row">
+        <div class="db">
+          <div class="label">Database</div>
+          <div class="db__row">
+            <span class="badge" id="dbStatus">DB: Disconnected</span>
+            <button class="btn btn--ghost" id="connectBtn" type="button">Connect</button>
+          </div>
+          <p class="hint">
+            (Simulated DB connectivity using localStorage + async handshake)
+          </p>
+        </div>
+
+        <div class="tools">
+          <div class="field">
+            <label class="label" for="q">Search</label>
+            <input class="input" id="q" type="search" placeholder="Search title, author, tags..." autocomplete="off"/>
+          </div>
+
+          <div class="filters">
+            <div class="field">
+              <label class="label" for="statusFilter">Status</label>
+              <select class="input" id="statusFilter">
+                <option value="all">All</option>
+                <option value="draft">Draft</option>
+                <option value="published">Published</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label class="label" for="sort">Sort</label>
+              <select class="input" id="sort">
+                <option value="newest">Newest</option>
+                <option value="oldest">Oldest</option>
+                <option value="title">Title A→Z</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="meta">
+            <span class="badge badge--soft" id="countText">—</span>
+            <span class="badge badge--soft" id="apiText">API: Idle</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gridwrap">
+      <div class="gridhead">
+        <h1 class="h1">Posts</h1>
+        <div class="muted" id="subText">Connect DB to start.</div>
+      </div>
+
+      <div class="grid" id="postGrid" aria-live="polite"></div>
+
+      <div class="empty" id="emptyState" hidden>
+        <div class="empty__title">No posts found</div>
+        <div class="empty__text">Try changing search or filters.</div>
+        <button class="btn" id="clearFiltersBtn" type="button">Clear Filters</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Editor Modal -->
+  <section class="modal" id="editorModal" role="dialog" aria-modal="true" aria-label="Post editor" hidden>
+    <div class="modal__overlay" id="editorOverlay"></div>
+    <div class="modal__panel">
+      <div class="modal__head">
+        <div>
+          <div class="modal__title" id="editorTitle">New Post</div>
+          <div class="modal__hint">Create • Update • Publish • Delete</div>
+        </div>
+        <button class="iconbtn" id="closeEditorBtn" type="button" aria-label="Close">✕</button>
+      </div>
+
+      <form class="modal__body" id="editorForm" novalidate>
+        <input type="hidden" id="postId"/>
+
+        <div class="formgrid">
+          <div class="field">
+            <label class="label" for="title">Title</label>
+            <input class="input" id="title" required placeholder="e.g., Building a production-ready CRUD app"/>
+            <div class="error" data-err="title"></div>
+          </div>
+
+          <div class="field">
+            <label class="label" for="author">Author</label>
+            <input class="input" id="author" required placeholder="e.g., Akhil Steven"/>
+            <div class="error" data-err="author"></div>
+          </div>
+
+          <div class="field">
+            <label class="label" for="tags">Tags</label>
+            <input class="input" id="tags" placeholder="comma separated: js, api, mongodb"/>
+            <div class="hint">Used for quick filtering/search</div>
+          </div>
+
+          <div class="field">
+            <label class="label" for="status">Status</label>
+            <select class="input" id="status" required>
+              <option value="draft">Draft</option>
+              <option value="published">Published</option>
+            </select>
+            <div class="error" data-err="status"></div>
+          </div>
+
+          <div class="field field--full">
+            <label class="label" for="content">Content</label>
+            <textarea class="input textarea" id="content" required placeholder="Write your post..."></textarea>
+            <div class="error" data-err="content"></div>
+          </div>
+        </div>
+
+        <div class="modal__foot">
+          <div class="left">
+            <button class="btn btn--danger" id="deleteBtn" type="button" hidden>Delete</button>
+          </div>
+
+          <div class="right">
+            <button class="btn btn--ghost" id="cancelBtn" type="button">Cancel</button>
+            <button class="btn btn--primary" id="saveBtn" type="submit">Save</button>
+          </div>
+        </div>
+
+        <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+      </form>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>ZENITH CMS • Mini Project</span>
+      <span class="muted">Ready for Vercel static deploy</span>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
