@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Project TITAN — Storefront</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <div class="brand">
+        <div class="brand__mark" aria-hidden="true">T</div>
+        <div>
+          <div class="brand__name">TITAN</div>
+          <div class="brand__tag">Full-Stack E-Commerce Storefront (Demo)</div>
+        </div>
+      </div>
+
+      <div class="topbar__actions">
+        <button class="icon-btn" id="themeBtn" type="button" aria-label="Toggle theme">
+          <span aria-hidden="true">☾</span>
+        </button>
+
+        <button class="cart-btn" id="openCartBtn" type="button" aria-haspopup="dialog" aria-controls="cartDrawer">
+          <span aria-hidden="true">🛒</span>
+          <span>Cart</span>
+          <span class="pill" id="cartCount">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container main">
+    <section class="hero">
+      <div class="hero__left">
+        <h1>Built for speed. Designed for trust.</h1>
+        <p>
+          Browse products with server-state search/filtering, add to a persistent cart,
+          and complete a secure checkout flow (demo submission).
+        </p>
+        <div class="hero__meta">
+          <span class="chip">Dual-State Architecture</span>
+          <span class="chip">Persistent Cart</span>
+          <span class="chip">Search + Filters</span>
+          <span class="chip">Secure Checkout</span>
+          <span class="chip">Responsive UI</span>
+        </div>
+      </div>
+
+      <div class="hero__right">
+        <div class="statcard">
+          <div class="statcard__title">Today’s Status</div>
+          <ul class="statlist">
+            <li><span class="dot ok"></span> API simulated with latency + caching</li>
+            <li><span class="dot ok"></span> Cart persisted in localStorage</li>
+            <li><span class="dot ok"></span> Checkout includes validation + idempotency</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel__row">
+        <div class="search">
+          <label class="label" for="q">Search</label>
+          <div class="inputrow">
+            <input id="q" class="input" type="search" placeholder="Try: hoodie, bottle, keyboard..." autocomplete="off"/>
+            <button class="btn" id="clearSearchBtn" type="button">Clear</button>
+          </div>
+          <div class="hint" id="resultsHint">Type to search products.</div>
+        </div>
+
+        <div class="filters">
+          <div class="filters__head">
+            <div>
+              <div class="label">Filters</div>
+              <div class="hint">Server-state filtering (mock backend)</div>
+            </div>
+            <button class="btn btn--ghost" id="resetFiltersBtn" type="button">Reset</button>
+          </div>
+
+          <div class="filters__grid">
+            <div class="field">
+              <label class="label" for="category">Category</label>
+              <select class="input" id="category">
+                <option value="all">All</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label class="label" for="sort">Sort</label>
+              <select class="input" id="sort">
+                <option value="relevance">Relevance</option>
+                <option value="price_asc">Price: Low → High</option>
+                <option value="price_desc">Price: High → Low</option>
+                <option value="rating_desc">Rating: High → Low</option>
+                <option value="newest">Newest</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label class="label" for="minPrice">Min ₹</label>
+              <input class="input" id="minPrice" type="number" min="0" step="50" placeholder="0"/>
+            </div>
+
+            <div class="field">
+              <label class="label" for="maxPrice">Max ₹</label>
+              <input class="input" id="maxPrice" type="number" min="0" step="50" placeholder="5000"/>
+            </div>
+
+            <div class="field">
+              <div class="label">Rating</div>
+              <div class="seg" role="group" aria-label="Minimum rating">
+                <button class="seg__btn" data-rating="0" type="button">Any</button>
+                <button class="seg__btn" data-rating="3" type="button">3★+</button>
+                <button class="seg__btn" data-rating="4" type="button">4★+</button>
+                <button class="seg__btn" data-rating="4.5" type="button">4.5★+</button>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="check">
+                <input id="inStockOnly" type="checkbox"/>
+                <span>In-stock only</span>
+              </label>
+              <label class="check">
+                <input id="freeShipOnly" type="checkbox"/>
+                <span>Free shipping</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel__row panel__row--tight">
+        <div class="statebar">
+          <div class="statebar__left">
+            <div class="badge" id="serverBadge">Server: Idle</div>
+            <div class="badge badge--soft" id="uiBadge">UI: Ready</div>
+          </div>
+
+          <div class="statebar__right">
+            <button class="btn btn--ghost" id="refreshBtn" type="button">Refresh</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gridwrap">
+      <div class="gridhead">
+        <h2 class="h2">Products</h2>
+        <div class="gridmeta">
+          <span id="countText">—</span>
+          <span class="sep">•</span>
+          <span id="latencyText">—</span>
+        </div>
+      </div>
+
+      <div class="grid" id="productGrid" aria-live="polite"></div>
+
+      <div class="empty" id="emptyState" hidden>
+        <div class="empty__title">No products found</div>
+        <div class="empty__text">Try clearing search or adjusting filters.</div>
+        <button class="btn" id="emptyResetBtn" type="button">Reset filters</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Cart Drawer -->
+  <aside class="drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-label="Cart" hidden>
+    <div class="drawer__overlay" id="cartOverlay"></div>
+    <div class="drawer__panel">
+      <div class="drawer__head">
+        <div>
+          <div class="drawer__title">Your Cart</div>
+          <div class="drawer__hint" id="cartSubhint">Persistent across refreshes.</div>
+        </div>
+        <button class="icon-btn" id="closeCartBtn" type="button" aria-label="Close cart">✕</button>
+      </div>
+
+      <div class="drawer__body">
+        <div class="cartlist" id="cartList"></div>
+
+        <div class="cartempty" id="cartEmpty" hidden>
+          <div class="cartempty__title">Your cart is empty</div>
+          <div class="cartempty__text">Add something you’ll love.</div>
+        </div>
+      </div>
+
+      <div class="drawer__foot">
+        <div class="totals">
+          <div class="totals__row">
+            <span>Subtotal</span>
+            <strong id="subtotalText">₹0</strong>
+          </div>
+          <div class="totals__row">
+            <span>Shipping</span>
+            <strong id="shippingText">₹0</strong>
+          </div>
+          <div class="totals__row totals__row--big">
+            <span>Total</span>
+            <strong id="totalText">₹0</strong>
+          </div>
+          <div class="totals__note">Taxes not included (demo).</div>
+        </div>
+
+        <button class="btn btn--primary" id="checkoutBtn" type="button">Proceed to Checkout</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Checkout Modal -->
+  <section class="modal" id="checkoutModal" role="dialog" aria-modal="true" aria-label="Checkout" hidden>
+    <div class="modal__overlay" id="checkoutOverlay"></div>
+    <div class="modal__panel">
+      <div class="modal__head">
+        <div>
+          <div class="modal__title">Secure Checkout</div>
+          <div class="modal__hint">Client validation + idempotent submission (demo)</div>
+        </div>
+        <button class="icon-btn" id="closeCheckoutBtn" type="button" aria-label="Close checkout">✕</button>
+      </div>
+
+      <form class="modal__body" id="checkoutForm" novalidate>
+        <div class="formgrid">
+          <div class="field">
+            <label class="label" for="fullName">Full Name</label>
+            <input class="input" id="fullName" name="fullName" placeholder="Akhil Steven" required/>
+            <div class="error" data-err="fullName"></div>
+          </div>
+
+          <div class="field">
+            <label class="label" for="email">Email</label>
+            <input class="input" id="email" name="email" type="email" placeholder="name@example.com" required/>
+            <div class="error" data-err="email"></div>
+          </div>
+
+          <div class="field">
+            <label class="label" for="phone">Phone</label>
+            <input class="input" id="phone" name="phone" inputmode="numeric" placeholder="10-digit number" required/>
+            <div class="error" data-err="phone"></div>
+          </div>
+
+          <div class="field">
+            <label class="label" for="address">Address</label>
+            <input class="input" id="address" name="address" placeholder="House, Street, City" required/>
+            <div class="error" data-err="address"></div>
+          </div>
+
+          <div class="field">
+            <label class="label" for="pincode">Pincode</label>
+            <input class="input" id="pincode" name="pincode" inputmode="numeric" placeholder="6-digit pincode" required/>
+            <div class="error" data-err="pincode"></div>
+          </div>
+
+          <div class="field">
+            <label class="label" for="payment">Payment Method</label>
+            <select class="input" id="payment" name="payment" required>
+              <option value="card">Card</option>
+              <option value="upi">UPI</option>
+              <option value="cod">Cash on Delivery</option>
+            </select>
+            <div class="error" data-err="payment"></div>
+          </div>
+        </div>
+
+        <div class="securebox">
+          <div class="securebox__row">
+            <span class="lock" aria-hidden="true">🔒</span>
+            <div>
+              <div class="securebox__title">Security</div>
+              <div class="securebox__text">
+                Demo includes CSRF token + idempotency key + payload hashing on submit.
+              </div>
+            </div>
+          </div>
+          <div class="securebox__row securebox__row--small">
+            <span class="mono">CSRF:</span> <span class="mono" id="csrfText">—</span>
+          </div>
+          <div class="securebox__row securebox__row--small">
+            <span class="mono">Idempotency:</span> <span class="mono" id="idemText">—</span>
+          </div>
+        </div>
+
+        <div class="modal__foot">
+          <button class="btn btn--ghost" id="cancelCheckoutBtn" type="button">Cancel</button>
+          <button class="btn btn--primary" id="placeOrderBtn" type="submit">
+            Place Order
+          </button>
+        </div>
+
+        <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+      </form>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>© TITAN Storefront Demo</span>
+      <span class="muted">Built with Vanilla JS • Accessible • Responsive</span>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
